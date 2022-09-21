@@ -19,12 +19,16 @@ class LoginViewController: UIViewController {
         
     }
 
-
+    @IBAction func pressedUserRegistrationButton(_ sender: Any) {
+    }
+    
+    
     @IBAction func pressedLoginButton(_ sender: Any) {
     }
     
 }
 
+//MARK: - pickerView -
 extension LoginViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     //pickerviewの列数
