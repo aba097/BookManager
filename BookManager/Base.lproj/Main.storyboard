@@ -35,6 +35,9 @@
                                         <rect key="frame" x="5" y="136" width="323" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="ログイン"/>
+                                        <connections>
+                                            <action selector="pressedLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="chc-Vz-wVr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -71,6 +74,9 @@
                             <constraint firstItem="ZcR-cy-H1i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zmO-ZV-sma"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="userSelectionPickerView" destination="eNR-XQ-gGI" id="wwn-aK-XW0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
