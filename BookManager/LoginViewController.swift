@@ -19,7 +19,8 @@ class LoginViewController: UIViewController {
         
     }
 
-    @IBAction func pressedUserRegistrationButton(_ sender: Any) {
+
+    @IBAction func pressedUserManagementButton(_ sender: Any) {
     }
     
     
