@@ -54,27 +54,13 @@
                                     <constraint firstItem="Lqs-Tr-0KO" firstAttribute="top" secondItem="eNR-XQ-gGI" secondAttribute="bottom" constant="30" id="xu2-DP-TxK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcR-cy-H1i">
-                                <rect key="frame" x="0.0" y="59" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="8jX-9W-kV2"/>
-                                    <constraint firstAttribute="height" constant="20" id="fp3-QL-T0B"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title=""/>
-                                <connections>
-                                    <action selector="pressedUserManagementButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pum-W4-Xuf"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZcR-cy-H1i" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8DG-XN-eRM"/>
                             <constraint firstItem="3lo-c9-rBu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="X7P-Dq-iXv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3lo-c9-rBu" secondAttribute="trailing" constant="30" id="bca-mH-NLT"/>
                             <constraint firstItem="3lo-c9-rBu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="qsq-xV-O0n"/>
-                            <constraint firstItem="ZcR-cy-H1i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zmO-ZV-sma"/>
                         </constraints>
                     </view>
                     <connections>
@@ -92,13 +78,80 @@
                     <view key="view" contentMode="scaleToFill" id="ZXx-n5-G4F">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGg-bf-uMP">
+                                <rect key="frame" x="30" y="176" width="333" height="500"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hl7-TU-F0n">
+                                        <rect key="frame" x="5" y="46" width="323" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FlI-Ed-yYh">
+                                        <rect key="frame" x="5" y="110" width="323" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="追加する"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="追加" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MrG-YX-dX1">
+                                        <rect key="frame" x="5" y="5" width="323" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9G-Ch-SoM">
+                                        <rect key="frame" x="5" y="195" width="323" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1F-8e-xFS">
+                                        <rect key="frame" x="5" y="246" width="323" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="Bmh-PS-nMB"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bud-bz-Hdl">
+                                        <rect key="frame" x="5" y="346" width="323" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="削除する"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="hl7-TU-F0n" firstAttribute="top" secondItem="MrG-YX-dX1" secondAttribute="bottom" constant="20" id="1eT-LL-TKd"/>
+                                    <constraint firstItem="MrG-YX-dX1" firstAttribute="top" secondItem="gGg-bf-uMP" secondAttribute="top" constant="5" id="2JS-xG-QUS"/>
+                                    <constraint firstItem="G9G-Ch-SoM" firstAttribute="top" secondItem="FlI-Ed-yYh" secondAttribute="bottom" constant="50" id="8T7-hZ-fVH"/>
+                                    <constraint firstItem="n1F-8e-xFS" firstAttribute="top" secondItem="G9G-Ch-SoM" secondAttribute="bottom" constant="30" id="A50-fW-pjd"/>
+                                    <constraint firstItem="FlI-Ed-yYh" firstAttribute="leading" secondItem="gGg-bf-uMP" secondAttribute="leading" constant="5" id="NEb-Qk-Gg0"/>
+                                    <constraint firstAttribute="height" constant="500" id="OAa-es-n98"/>
+                                    <constraint firstItem="n1F-8e-xFS" firstAttribute="leading" secondItem="gGg-bf-uMP" secondAttribute="leading" constant="5" id="Tla-Xk-LEi"/>
+                                    <constraint firstAttribute="trailing" secondItem="n1F-8e-xFS" secondAttribute="trailing" constant="5" id="VHY-Cb-Wsd"/>
+                                    <constraint firstAttribute="trailing" secondItem="MrG-YX-dX1" secondAttribute="trailing" constant="5" id="WPj-Xd-nbS"/>
+                                    <constraint firstAttribute="trailing" secondItem="hl7-TU-F0n" secondAttribute="trailing" constant="5" id="Zjv-0s-s0q"/>
+                                    <constraint firstItem="hl7-TU-F0n" firstAttribute="leading" secondItem="gGg-bf-uMP" secondAttribute="leading" constant="5" id="a3h-Qv-t1a"/>
+                                    <constraint firstItem="bud-bz-Hdl" firstAttribute="leading" secondItem="gGg-bf-uMP" secondAttribute="leading" constant="5" id="acs-sb-mdf"/>
+                                    <constraint firstItem="MrG-YX-dX1" firstAttribute="leading" secondItem="gGg-bf-uMP" secondAttribute="leading" constant="5" id="bCV-iH-gvs"/>
+                                    <constraint firstItem="G9G-Ch-SoM" firstAttribute="leading" secondItem="gGg-bf-uMP" secondAttribute="leading" constant="5" id="daZ-1V-fMW"/>
+                                    <constraint firstAttribute="trailing" secondItem="bud-bz-Hdl" secondAttribute="trailing" constant="5" id="ifE-6K-Xk2"/>
+                                    <constraint firstItem="FlI-Ed-yYh" firstAttribute="top" secondItem="hl7-TU-F0n" secondAttribute="bottom" constant="30" id="kiI-5Y-fAH"/>
+                                    <constraint firstAttribute="trailing" secondItem="FlI-Ed-yYh" secondAttribute="trailing" constant="5" id="lBY-lE-Szv"/>
+                                    <constraint firstAttribute="trailing" secondItem="G9G-Ch-SoM" secondAttribute="trailing" constant="5" id="lhE-uD-RWK"/>
+                                    <constraint firstItem="bud-bz-Hdl" firstAttribute="top" secondItem="n1F-8e-xFS" secondAttribute="bottom" constant="30" id="pvA-5G-b0q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6zd-Ib-gTK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gGg-bf-uMP" firstAttribute="centerY" secondItem="ZXx-n5-G4F" secondAttribute="centerY" id="IaU-Oc-S9M"/>
+                            <constraint firstItem="gGg-bf-uMP" firstAttribute="leading" secondItem="6zd-Ib-gTK" secondAttribute="leading" constant="30" id="SMp-gq-ieC"/>
+                            <constraint firstItem="6zd-Ib-gTK" firstAttribute="trailing" secondItem="gGg-bf-uMP" secondAttribute="trailing" constant="30" id="lLp-yj-2io"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w29-J8-IH4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21" y="704"/>
+            <point key="canvasLocation" x="20.610687022900763" y="703.52112676056345"/>
         </scene>
     </scenes>
     <resources>
