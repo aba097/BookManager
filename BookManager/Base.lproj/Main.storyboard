@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,26 +13,26 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="BookManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lo-c9-rBu">
-                                <rect key="frame" x="30" y="366" width="370" height="200"/>
+                                <rect key="frame" x="30" y="326" width="333" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYc-RA-Wp4">
-                                        <rect key="frame" x="5" y="5" width="360" height="21"/>
+                                        <rect key="frame" x="5" y="5" width="323" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNR-XQ-gGI">
-                                        <rect key="frame" x="5" y="36" width="360" height="70"/>
+                                        <rect key="frame" x="5" y="36" width="323" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Gbh-ul-XU5"/>
                                         </constraints>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqs-Tr-0KO">
-                                        <rect key="frame" x="5" y="136" width="360" height="35"/>
+                                        <rect key="frame" x="5" y="136" width="323" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="ログイン"/>
                                         <connections>
@@ -76,19 +76,19 @@
             <objects>
                 <viewController id="Xft-J3-eRd" customClass="UserManagementViewController" customModule="BookManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZXx-n5-G4F">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGg-bf-uMP">
-                                <rect key="frame" x="30" y="216" width="370" height="500"/>
+                                <rect key="frame" x="30" y="176" width="333" height="500"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hl7-TU-F0n">
-                                        <rect key="frame" x="5" y="46" width="360" height="34"/>
+                                        <rect key="frame" x="5" y="46" width="323" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FlI-Ed-yYh">
-                                        <rect key="frame" x="5" y="110" width="360" height="35"/>
+                                        <rect key="frame" x="5" y="110" width="323" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="追加する"/>
                                         <connections>
@@ -96,25 +96,25 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="追加" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MrG-YX-dX1">
-                                        <rect key="frame" x="5" y="5" width="360" height="21"/>
+                                        <rect key="frame" x="5" y="5" width="323" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9G-Ch-SoM">
-                                        <rect key="frame" x="5" y="195" width="360" height="21"/>
+                                        <rect key="frame" x="5" y="195" width="323" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1F-8e-xFS">
-                                        <rect key="frame" x="5" y="246" width="360" height="70"/>
+                                        <rect key="frame" x="5" y="246" width="396" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Bmh-PS-nMB"/>
                                         </constraints>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bud-bz-Hdl">
-                                        <rect key="frame" x="5" y="346" width="360" height="35"/>
+                                        <rect key="frame" x="5" y="346" width="323" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="削除する"/>
                                         <connections>
@@ -168,49 +168,49 @@
             <objects>
                 <viewController id="3c3-tm-hRo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpA-QP-X64">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="w8E-vb-dyM">
-                                <rect key="frame" x="5" y="119" width="430" height="56"/>
+                                <rect key="frame" x="5" y="119" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="3c3-tm-hRo" id="STh-W0-seK"/>
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMw-GH-K6s">
-                                <rect key="frame" x="5" y="185" width="420" height="35"/>
+                                <rect key="frame" x="5" y="185" width="383" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="絞り込み"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Kgy-Ol-4ub">
-                                <rect key="frame" x="5" y="240" width="420" height="653"/>
+                                <rect key="frame" x="5" y="240" width="383" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="253" id="HTt-gX-bLN">
-                                        <rect key="frame" x="0.0" y="50" width="420" height="253"/>
+                                        <rect key="frame" x="0.0" y="50" width="383" height="253"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HTt-gX-bLN" id="vwI-mp-u3Y">
-                                            <rect key="frame" x="0.0" y="0.0" width="420" height="253"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="253"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DWd-vj-cYS">
-                                                    <rect key="frame" x="5" y="5" width="189" height="243"/>
+                                                    <rect key="frame" x="5" y="5" width="172.33333333333334" height="243"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="著者" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ez3-Qz-tj6">
-                                                    <rect key="frame" x="204" y="61.333333333333336" width="191" height="20.333333333333336"/>
+                                                    <rect key="frame" x="187.33333333333337" y="61.333333333333336" width="170.66666666666663" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版社" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Deq-pe-H03">
-                                                    <rect key="frame" x="204" y="101.66666666666667" width="191" height="20.333333333333329"/>
+                                                    <rect key="frame" x="187.33333333333337" y="101.66666666666667" width="170.66666666666663" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8N4-2s-atp">
-                                                    <rect key="frame" x="204" y="21" width="191" height="20.333333333333329"/>
+                                                    <rect key="frame" x="187.33333333333337" y="21" width="170.66666666666663" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -234,19 +234,19 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="8i0-1z-u70">
-                                        <rect key="frame" x="0.0" y="303" width="420" height="79"/>
+                                        <rect key="frame" x="0.0" y="303" width="383" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8i0-1z-u70" id="bWB-be-Ddj">
-                                            <rect key="frame" x="0.0" y="0.0" width="420" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htV-uz-q6j">
-                                                    <rect key="frame" x="25" y="21" width="336" height="35"/>
+                                                    <rect key="frame" x="25" y="21" width="306.33333333333331" height="35"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="もっと見る"/>
                                                 </button>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2vO-5H-LCW">
-                                                    <rect key="frame" x="371" y="28.666666666666671" width="20" height="20"/>
+                                                    <rect key="frame" x="341.33333333333331" y="28.666666666666671" width="20" height="20"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
@@ -293,74 +293,77 @@
             </objects>
             <point key="canvasLocation" x="886.04651162790697" y="703.00429184549364"/>
         </scene>
-        <!--View Controller-->
+        <!--Book Register View Controller-->
         <scene sceneID="clS-3c-cL1">
             <objects>
-                <viewController id="FCa-Z1-3mu" sceneMemberID="viewController">
+                <viewController id="FCa-Z1-3mu" customClass="BookRegisterViewController" customModule="BookManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="guG-sl-wQr">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIH-ew-afc">
-                                <rect key="frame" x="30" y="141" width="370" height="650"/>
+                                <rect key="frame" x="30" y="101" width="333" height="650"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvg-EE-UEG">
-                                        <rect key="frame" x="5" y="5" width="360" height="21"/>
+                                        <rect key="frame" x="5" y="5" width="323" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1H1-me-rdB">
-                                        <rect key="frame" x="5" y="36" width="360" height="34"/>
+                                        <rect key="frame" x="5" y="36" width="323" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ca-0J-a8R">
-                                        <rect key="frame" x="5" y="121" width="360" height="34"/>
+                                        <rect key="frame" x="5" y="121" width="323" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="著者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-lf-C7l">
-                                        <rect key="frame" x="5" y="90" width="360" height="21"/>
+                                        <rect key="frame" x="5" y="90" width="323" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQf-9h-TVD">
-                                        <rect key="frame" x="5" y="206" width="360" height="34"/>
+                                        <rect key="frame" x="5" y="206" width="323" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版社" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6G0-uC-rLS">
-                                        <rect key="frame" x="5" y="175" width="360" height="21"/>
+                                        <rect key="frame" x="5" y="175" width="323" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Cz-ie-ZHW">
-                                        <rect key="frame" x="5" y="311" width="259" height="34"/>
+                                        <rect key="frame" x="5" y="311" width="233" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBNテキスト入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3A-4T-Foo">
-                                        <rect key="frame" x="5" y="280" width="360" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBNコード入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3A-4T-Foo">
+                                        <rect key="frame" x="5" y="280" width="323" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGw-Lk-KZQ">
-                                        <rect key="frame" x="274" y="310.66666666666669" width="91" height="35"/>
+                                        <rect key="frame" x="248" y="310.66666666666669" width="80" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="検索"/>
+                                        <connections>
+                                            <action selector="pressedISBNSearchButton:" destination="FCa-Z1-3mu" eventType="touchUpInside" id="Bji-Th-Kte"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBNバーコード入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uv-3e-tmX">
-                                        <rect key="frame" x="5" y="375" width="222" height="21"/>
+                                        <rect key="frame" x="5" y="375" width="199.66666666666666" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPX-1p-h1l">
-                                        <rect key="frame" x="65" y="423" width="240" height="128"/>
+                                        <rect key="frame" x="46.666666666666686" y="423" width="240" height="128"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="7r7-jW-ZB2"/>
@@ -368,14 +371,20 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4D-AN-xDO">
-                                        <rect key="frame" x="5" y="591" width="360" height="35"/>
+                                        <rect key="frame" x="5" y="591" width="323" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="この本を登録する"/>
+                                        <connections>
+                                            <action selector="pressedBookRegisterButton:" destination="FCa-Z1-3mu" eventType="touchUpInside" id="aCa-w8-pU2"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42W-Eg-wV0">
-                                        <rect key="frame" x="237" y="368" width="128" height="35"/>
+                                        <rect key="frame" x="214.66666666666666" y="368" width="113.33333333333334" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="カメラ起動"/>
+                                        <connections>
+                                            <action selector="pressedCameraBootOrEndButton:" destination="FCa-Z1-3mu" eventType="touchUpInside" id="H8l-zB-F32"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -430,6 +439,13 @@
                             <constraint firstItem="ZIH-ew-afc" firstAttribute="centerY" secondItem="guG-sl-wQr" secondAttribute="centerY" id="gyH-DV-v27"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="inputAuthorTextField" destination="0ca-0J-a8R" id="nae-A4-1xw"/>
+                        <outlet property="inputISBNCodeTextField" destination="8Cz-ie-ZHW" id="X3E-yd-kGV"/>
+                        <outlet property="inputPublisherTextField" destination="lQf-9h-TVD" id="2iL-1r-N2u"/>
+                        <outlet property="inputTitleTextField" destination="1H1-me-rdB" id="erg-JD-g5X"/>
+                        <outlet property="readByISBNBarcodeView" destination="OPX-1p-h1l" id="W1X-bA-YAH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="740-x6-YZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,21 +9,26 @@ import UIKit
 
 class BookRegisterViewController: UIViewController {
 
+    @IBOutlet weak var inputTitleTextField: UITextField!
+    @IBOutlet weak var inputAuthorTextField: UITextField!
+    @IBOutlet weak var inputPublisherTextField: UITextField!
+    @IBOutlet weak var inputISBNCodeTextField: UITextField!
+
+    @IBOutlet weak var readByISBNBarcodeView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    
+    }
+  
+    @IBAction func pressedISBNSearchButton(_ sender: Any) {
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func pressedCameraBootOrEndButton(_ sender: Any) {
     }
-    */
-
+    
+    @IBAction func pressedBookRegisterButton(_ sender: Any) {
+    }
 }
