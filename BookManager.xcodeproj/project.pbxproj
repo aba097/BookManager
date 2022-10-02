@@ -186,8 +186,6 @@
 		43E29B0828E9659100B4A23F /* userManagement */ = {
 			isa = PBXGroup;
 			children = (
-				43E29B1228E9742700B4A23F /* BookDetailTableViewCell.swift */,
-				43E29B1428E9744A00B4A23F /* TryToMoreTableViewCell.swift */,
 				43E29B0C28E9685D00B4A23F /* UserManagementViewController.swift */,
 			);
 			path = userManagement;
@@ -197,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */,
+				43E29B1228E9742700B4A23F /* BookDetailTableViewCell.swift */,
+				43E29B1428E9744A00B4A23F /* TryToMoreTableViewCell.swift */,
 			);
 			path = bookManagement;
 			sourceTree = "<group>";
