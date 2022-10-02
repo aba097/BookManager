@@ -18,11 +18,6 @@ class LoginViewController: UIViewController {
         
         
     }
-
-
-    @IBAction func pressedUserManagementButton(_ sender: Any) {
-    }
-    
     
     @IBAction func pressedLoginButton(_ sender: Any) {
     }
