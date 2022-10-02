@@ -187,7 +187,7 @@
                                 <rect key="frame" x="5" y="240" width="383" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="253" id="HTt-gX-bLN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="253" id="HTt-gX-bLN" customClass="BookDetailTableViewCell" customModule="BookManager" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="383" height="253"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HTt-gX-bLN" id="vwI-mp-u3Y">
@@ -232,8 +232,14 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Deq-pe-H03" secondAttribute="trailing" constant="5" id="wh0-hb-EqX"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bookAuthorLabel" destination="Ez3-Qz-tj6" id="TlY-KI-tLj"/>
+                                            <outlet property="bookPublisherLabel" destination="Deq-pe-H03" id="Co2-Mg-ze7"/>
+                                            <outlet property="bookThumbnailImageView" destination="DWd-vj-cYS" id="md6-KG-rPE"/>
+                                            <outlet property="bookTitleLabel" destination="8N4-2s-atp" id="dWl-cq-x2F"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="8i0-1z-u70">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="8i0-1z-u70" customClass="TryToMoreTableViewCell" customModule="BookManager" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="303" width="383" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8i0-1z-u70" id="bWB-be-Ddj">
@@ -244,6 +250,9 @@
                                                     <rect key="frame" x="25" y="21" width="306.33333333333331" height="35"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="もっと見る"/>
+                                                    <connections>
+                                                        <action selector="pressedTryToMoreButton:" destination="8i0-1z-u70" eventType="touchUpInside" id="rYm-sY-Cfp"/>
+                                                    </connections>
                                                 </button>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2vO-5H-LCW">
                                                     <rect key="frame" x="341.33333333333331" y="28.666666666666671" width="20" height="20"/>
@@ -293,7 +302,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="886.04651162790697" y="703.00429184549364"/>
+            <point key="canvasLocation" x="884.73282442748086" y="702.81690140845069"/>
         </scene>
         <!--Book Register View Controller-->
         <scene sceneID="clS-3c-cL1">
