@@ -9,21 +9,21 @@ import UIKit
 
 class UserManagementViewController: UIViewController {
 
+    @IBOutlet weak var inputAddUsernameTextField: UITextField!
+    
+    @IBOutlet weak var userSelectionPickerView: UIPickerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+
+  
+    @IBAction func pressedUserAdditionalButton(_ sender: Any) {
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func pressedUserDeletingButton(_ sender: Any) {
     }
-    */
-
+    
 }

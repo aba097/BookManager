@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="20.610687022900763" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--User Management View Controller-->
         <scene sceneID="Lmr-XK-D8d">
             <objects>
-                <viewController id="Xft-J3-eRd" sceneMemberID="viewController">
+                <viewController id="Xft-J3-eRd" customClass="UserManagementViewController" customModule="BookManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZXx-n5-G4F">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,6 +91,9 @@
                                         <rect key="frame" x="5" y="110" width="360" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="追加する"/>
+                                        <connections>
+                                            <action selector="pressedUserAdditionalButton:" destination="Xft-J3-eRd" eventType="touchUpInside" id="nvm-cc-qGL"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="追加" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MrG-YX-dX1">
                                         <rect key="frame" x="5" y="5" width="360" height="21"/>
@@ -114,6 +117,9 @@
                                         <rect key="frame" x="5" y="346" width="360" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="削除する"/>
+                                        <connections>
+                                            <action selector="pressedUserDeletingButton:" destination="Xft-J3-eRd" eventType="touchUpInside" id="zCR-Jv-ctB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -148,6 +154,10 @@
                             <constraint firstItem="6zd-Ib-gTK" firstAttribute="trailing" secondItem="gGg-bf-uMP" secondAttribute="trailing" constant="30" id="lLp-yj-2io"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="inputAddUsernameTextField" destination="hl7-TU-F0n" id="dr3-Wq-DZB"/>
+                        <outlet property="userSelectionPickerView" destination="n1F-8e-xFS" id="hcq-Ez-JGx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w29-J8-IH4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
