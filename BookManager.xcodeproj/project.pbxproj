@@ -22,6 +22,9 @@
 		43E29AC528E44FD700B4A23F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC428E44FD700B4A23F /* FirebaseFirestoreSwift */; };
 		43E29AC728E44FD700B4A23F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC628E44FD700B4A23F /* FirebaseStorage */; };
 		43E29AC928E44FD700B4A23F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC828E44FD700B4A23F /* FirebaseStorageCombine-Community */; };
+		43E29B0D28E9685D00B4A23F /* UserManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B0C28E9685D00B4A23F /* UserManagementViewController.swift */; };
+		43E29B0F28E9689900B4A23F /* BookRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */; };
+		43E29B1128E968AE00B4A23F /* BookManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */; };
 		89B379499F139A57FB4A535C /* Pods_BookManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CD3184FEE122664575ADE9 /* Pods_BookManagerTests.framework */; };
 		C1216CB399A561B2D0D32D7F /* Pods_BookManager_BookManagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3F496EEF58DB2113BC9DEA /* Pods_BookManager_BookManagerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +63,9 @@
 		43294A5528DAFFF500962A3E /* BookManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43294A5928DAFFF500962A3E /* BookManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManagerUITests.swift; sourceTree = "<group>"; };
 		43294A5B28DAFFF500962A3E /* BookManagerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManagerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		43E29B0C28E9685D00B4A23F /* UserManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementViewController.swift; sourceTree = "<group>"; };
+		43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRegisterViewController.swift; sourceTree = "<group>"; };
+		43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManagementViewController.swift; sourceTree = "<group>"; };
 		59DD5C500B1741635CDD9886 /* Pods-BookManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookManager.release.xcconfig"; path = "Target Support Files/Pods-BookManager/Pods-BookManager.release.xcconfig"; sourceTree = "<group>"; };
 		84289133F2807496DF4ADB8B /* Pods-BookManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookManagerTests.release.xcconfig"; path = "Target Support Files/Pods-BookManagerTests/Pods-BookManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE22123C0254F600ADBC4BDB /* Pods_BookManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,7 +136,6 @@
 				43E29B0928E9659700B4A23F /* bookManagement */,
 				43294A3A28DAFFF400962A3E /* SceneDelegate.swift */,
 				43E29B0828E9659100B4A23F /* userManagement */,
-				43294A3C28DAFFF400962A3E /* LoginViewController.swift */,
 				43E29B0728E9658D00B4A23F /* bookRegister */,
 				43E29B0628E9657C00B4A23F /* userLogin */,
 				43294A3E28DAFFF400962A3E /* Main.storyboard */,
@@ -161,6 +166,7 @@
 		43E29B0628E9657C00B4A23F /* userLogin */ = {
 			isa = PBXGroup;
 			children = (
+				43294A3C28DAFFF400962A3E /* LoginViewController.swift */,
 			);
 			path = userLogin;
 			sourceTree = "<group>";
@@ -168,6 +174,7 @@
 		43E29B0728E9658D00B4A23F /* bookRegister */ = {
 			isa = PBXGroup;
 			children = (
+				43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */,
 			);
 			path = bookRegister;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 		43E29B0828E9659100B4A23F /* userManagement */ = {
 			isa = PBXGroup;
 			children = (
+				43E29B0C28E9685D00B4A23F /* UserManagementViewController.swift */,
 			);
 			path = userManagement;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 		43E29B0928E9659700B4A23F /* bookManagement */ = {
 			isa = PBXGroup;
 			children = (
+				43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */,
 			);
 			path = bookManagement;
 			sourceTree = "<group>";
@@ -458,9 +467,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E29B1128E968AE00B4A23F /* BookManagementViewController.swift in Sources */,
+				43E29B0D28E9685D00B4A23F /* UserManagementViewController.swift in Sources */,
 				43294A3D28DAFFF400962A3E /* LoginViewController.swift in Sources */,
 				43294A3928DAFFF400962A3E /* AppDelegate.swift in Sources */,
 				43294A3B28DAFFF400962A3E /* SceneDelegate.swift in Sources */,
+				43E29B0F28E9689900B4A23F /* BookRegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
