@@ -127,8 +127,12 @@
 			isa = PBXGroup;
 			children = (
 				43294A3828DAFFF400962A3E /* AppDelegate.swift */,
+				43E29B0928E9659700B4A23F /* bookManagement */,
 				43294A3A28DAFFF400962A3E /* SceneDelegate.swift */,
+				43E29B0828E9659100B4A23F /* userManagement */,
 				43294A3C28DAFFF400962A3E /* LoginViewController.swift */,
+				43E29B0728E9658D00B4A23F /* bookRegister */,
+				43E29B0628E9657C00B4A23F /* userLogin */,
 				43294A3E28DAFFF400962A3E /* Main.storyboard */,
 				43294A4128DAFFF500962A3E /* Assets.xcassets */,
 				43294A4328DAFFF500962A3E /* LaunchScreen.storyboard */,
@@ -152,6 +156,34 @@
 				43294A5B28DAFFF500962A3E /* BookManagerUITestsLaunchTests.swift */,
 			);
 			path = BookManagerUITests;
+			sourceTree = "<group>";
+		};
+		43E29B0628E9657C00B4A23F /* userLogin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = userLogin;
+			sourceTree = "<group>";
+		};
+		43E29B0728E9658D00B4A23F /* bookRegister */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = bookRegister;
+			sourceTree = "<group>";
+		};
+		43E29B0828E9659100B4A23F /* userManagement */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = userManagement;
+			sourceTree = "<group>";
+		};
+		43E29B0928E9659700B4A23F /* bookManagement */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = bookManagement;
 			sourceTree = "<group>";
 		};
 		BE229989509F1ED67C88C8C8 /* Frameworks */ = {
