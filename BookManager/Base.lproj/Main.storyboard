@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="20.610687022900763" y="703.52112676056345"/>
         </scene>
-        <!--View Controller-->
+        <!--Book Management View Controller-->
         <scene sceneID="8mr-OV-xyJ">
             <objects>
-                <viewController id="3c3-tm-hRo" sceneMemberID="viewController">
+                <viewController id="3c3-tm-hRo" customClass="BookManagementViewController" customModule="BookManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpA-QP-X64">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,7 +277,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bookSearchBar" destination="w8E-vb-dyM" id="eKg-13-anb"/>
                         <outlet property="searchDisplayController" destination="rwo-xE-v8l" id="2sh-gr-S7k"/>
+                        <outlet property="showBookListTableView" destination="Kgy-Ol-4ub" id="8Ge-eZ-Asg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5QE-Sl-wCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
