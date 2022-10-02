@@ -9,6 +9,7 @@ import UIKit
 
 class TryToMoreTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var bookLoadingActivityIndicatorView: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

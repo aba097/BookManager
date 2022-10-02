@@ -266,6 +266,9 @@
                                                 <constraint firstItem="htV-uz-q6j" firstAttribute="leading" secondItem="bWB-be-Ddj" secondAttribute="leadingMargin" constant="5" id="ziQ-Jq-Zpi"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bookLoadingActivityIndicatorView" destination="2vO-5H-LCW" id="co3-jy-5b4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
