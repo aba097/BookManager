@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class UserLoginViewController: UIViewController {
 
     @IBOutlet weak var userSelectionPickerView: UIPickerView!
     
@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
 }
 
 //MARK: - pickerView -
-extension LoginViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+extension UserLoginViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     //pickerviewの列数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
