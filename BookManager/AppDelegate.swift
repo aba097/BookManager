@@ -10,27 +10,11 @@ import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //MARK: アプリ起動時にFirebaseに接続する
         //FirebaseApp.configure()
-        
-        //MARK: windowの作成とinjecton
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let userLoginViewController = UIStoryboard(name: "UserLogin", bundle: nil).instantiateInitialViewController() as! UserLoginViewController
-        
-        let model = UserLoginModel()
-        let presenter = UserLoginPresenter(view: userLoginViewController, model: model)
-        userLoginViewController.inject(presenter: presenter)
-        
-        self.window?.rootViewController = userLoginViewController
-        //表示
-        self.window?.makeKeyAndVisible()
-        
         return true
     }
 

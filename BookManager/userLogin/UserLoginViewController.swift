@@ -20,6 +20,8 @@ class UserLoginViewController: UIViewController {
         super.viewDidLoad()
         
         setup()
+        print(presenter)
+        presenter.viewDidLoad()
     }
     
     func setup(){
