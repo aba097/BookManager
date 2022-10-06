@@ -19,6 +19,7 @@
 		43294A5C28DAFFF500962A3E /* BookManagerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43294A5B28DAFFF500962A3E /* BookManagerUITestsLaunchTests.swift */; };
 		4378852F28EF0726008FF455 /* UserLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378852E28EF0726008FF455 /* UserLoginPresenter.swift */; };
 		4378853128EF07D1008FF455 /* UserLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378853028EF07D1008FF455 /* UserLoginModel.swift */; };
+		4378853428EF1033008FF455 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378853328EF1033008FF455 /* User.swift */; };
 		43E29B0D28E9685D00B4A23F /* UserManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B0C28E9685D00B4A23F /* UserManagementViewController.swift */; };
 		43E29B0F28E9689900B4A23F /* BookRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */; };
 		43E29B1128E968AE00B4A23F /* BookManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */; };
@@ -64,6 +65,7 @@
 		43294A5B28DAFFF500962A3E /* BookManagerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManagerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4378852E28EF0726008FF455 /* UserLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginPresenter.swift; sourceTree = "<group>"; };
 		4378853028EF07D1008FF455 /* UserLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginModel.swift; sourceTree = "<group>"; };
+		4378853328EF1033008FF455 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		43E29B0C28E9685D00B4A23F /* UserManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementViewController.swift; sourceTree = "<group>"; };
 		43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRegisterViewController.swift; sourceTree = "<group>"; };
 		43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManagementViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		4378853228EF082A008FF455 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				4378853328EF1033008FF455 /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				43294A3B28DAFFF400962A3E /* SceneDelegate.swift in Sources */,
 				43E29B1328E9742800B4A23F /* BookDetailTableViewCell.swift in Sources */,
 				43E29B0F28E9689900B4A23F /* BookRegisterViewController.swift in Sources */,
+				4378853428EF1033008FF455 /* User.swift in Sources */,
 				43E29B1528E9744A00B4A23F /* TryToMoreTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
