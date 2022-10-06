@@ -39,7 +39,7 @@ extension UserLoginViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     //pickerviewの列数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        //マジックナンバーだが，今後1でない数値になることはないと思われる
+        //MARK: マジックナンバーだが，今後1でない数値になることはないと思われる
         return 1
     }
     
