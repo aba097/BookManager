@@ -17,11 +17,6 @@
 		43294A5028DAFFF500962A3E /* BookManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43294A4F28DAFFF500962A3E /* BookManagerTests.swift */; };
 		43294A5A28DAFFF500962A3E /* BookManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43294A5928DAFFF500962A3E /* BookManagerUITests.swift */; };
 		43294A5C28DAFFF500962A3E /* BookManagerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43294A5B28DAFFF500962A3E /* BookManagerUITestsLaunchTests.swift */; };
-		43E29AC128E44FD700B4A23F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC028E44FD700B4A23F /* FirebaseFirestore */; };
-		43E29AC328E44FD700B4A23F /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC228E44FD700B4A23F /* FirebaseFirestoreCombine-Community */; };
-		43E29AC528E44FD700B4A23F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC428E44FD700B4A23F /* FirebaseFirestoreSwift */; };
-		43E29AC728E44FD700B4A23F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC628E44FD700B4A23F /* FirebaseStorage */; };
-		43E29AC928E44FD700B4A23F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 43E29AC828E44FD700B4A23F /* FirebaseStorageCombine-Community */; };
 		43E29B0D28E9685D00B4A23F /* UserManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B0C28E9685D00B4A23F /* UserManagementViewController.swift */; };
 		43E29B0F28E9689900B4A23F /* BookRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */; };
 		43E29B1128E968AE00B4A23F /* BookManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */; };
@@ -83,12 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43E29AC328E44FD700B4A23F /* FirebaseFirestoreCombine-Community in Frameworks */,
 				053AE27668B8E55ACF5375AB /* Pods_BookManager.framework in Frameworks */,
-				43E29AC128E44FD700B4A23F /* FirebaseFirestore in Frameworks */,
-				43E29AC728E44FD700B4A23F /* FirebaseStorage in Frameworks */,
-				43E29AC928E44FD700B4A23F /* FirebaseStorageCombine-Community in Frameworks */,
-				43E29AC528E44FD700B4A23F /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,11 +233,6 @@
 			);
 			name = BookManager;
 			packageProductDependencies = (
-				43E29AC028E44FD700B4A23F /* FirebaseFirestore */,
-				43E29AC228E44FD700B4A23F /* FirebaseFirestoreCombine-Community */,
-				43E29AC428E44FD700B4A23F /* FirebaseFirestoreSwift */,
-				43E29AC628E44FD700B4A23F /* FirebaseStorage */,
-				43E29AC828E44FD700B4A23F /* FirebaseStorageCombine-Community */,
 			);
 			productName = BookManager;
 			productReference = 43294A3528DAFFF400962A3E /* BookManager.app */;
@@ -325,7 +310,6 @@
 			);
 			mainGroup = 43294A2C28DAFFF400962A3E;
 			packageReferences = (
-				43E29ABF28E44FD700B4A23F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 43294A3628DAFFF400962A3E /* Products */;
 			projectDirPath = "";
@@ -712,7 +696,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4054648E2E6BE2AA07F678C /* Pods-BookManagerTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -733,7 +717,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84289133F2807496DF4ADB8B /* Pods-BookManagerTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -754,7 +738,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B18EAE750F08A4CA80DCEF84 /* Pods-BookManager-BookManagerUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XQH8MPB962;
@@ -773,7 +757,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0CA956BC752B394FD1B13D08 /* Pods-BookManager-BookManagerUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XQH8MPB962;
@@ -828,45 +812,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		43E29ABF28E44FD700B4A23F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		43E29AC028E44FD700B4A23F /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43E29ABF28E44FD700B4A23F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		43E29AC228E44FD700B4A23F /* FirebaseFirestoreCombine-Community */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43E29ABF28E44FD700B4A23F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreCombine-Community";
-		};
-		43E29AC428E44FD700B4A23F /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43E29ABF28E44FD700B4A23F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
-		43E29AC628E44FD700B4A23F /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43E29ABF28E44FD700B4A23F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-		43E29AC828E44FD700B4A23F /* FirebaseStorageCombine-Community */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43E29ABF28E44FD700B4A23F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseStorageCombine-Community";
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43294A2D28DAFFF400962A3E /* Project object */;
 }

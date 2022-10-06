@@ -108,7 +108,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1F-8e-xFS">
-                                        <rect key="frame" x="5" y="246" width="396" height="70"/>
+                                        <rect key="frame" x="5" y="246" width="323" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Bmh-PS-nMB"/>
                                         </constraints>
@@ -290,20 +290,10 @@
                     </view>
                     <connections>
                         <outlet property="bookSearchBar" destination="w8E-vb-dyM" id="eKg-13-anb"/>
-                        <outlet property="searchDisplayController" destination="rwo-xE-v8l" id="2sh-gr-S7k"/>
                         <outlet property="showBookListTableView" destination="Kgy-Ol-4ub" id="8Ge-eZ-Asg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5QE-Sl-wCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="rwo-xE-v8l">
-                    <connections>
-                        <outlet property="delegate" destination="3c3-tm-hRo" id="oK5-0U-ss0"/>
-                        <outlet property="searchBar" destination="w8E-vb-dyM" id="Leg-mC-g3F"/>
-                        <outlet property="searchContentsController" destination="3c3-tm-hRo" id="6lx-HT-w8P"/>
-                        <outlet property="searchResultsDataSource" destination="3c3-tm-hRo" id="kAd-xg-Ju6"/>
-                        <outlet property="searchResultsDelegate" destination="3c3-tm-hRo" id="Dtc-g5-X03"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="884.73282442748086" y="702.81690140845069"/>
         </scene>
