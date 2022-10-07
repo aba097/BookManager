@@ -86,6 +86,12 @@ extension UserLoginViewController: UserLoginPresenterOutput{
         bookTabVC.modalPresentationStyle = .fullScreen
         //(bookTabVC.viewControllers![1] as! BookRegisterViewController).test = "hoge"
         
+        //本登録画面
+        let bookRegisterViewController = bookTabVC.viewControllers![1] as! BookRegisterViewController
+        let bookRegisterModel = BookRegisterModel()
+        let bookRegisterPresenter = BookRegisterPresenter(view: bookRegisterViewController, model: bookRegisterModel)
+        bookRegisterViewController.inject(presenter: bookRegisterPresenter)
+        
         self.present(bookTabVC, animated: true, completion: nil) // 画面遷移
     }
     

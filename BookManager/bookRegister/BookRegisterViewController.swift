@@ -18,6 +18,11 @@ class BookRegisterViewController: UIViewController {
     
     @IBOutlet weak var readByISBNBarcodeView: UIView!
     
+    private var presenter: BookRegisterPresenterInput!
+    func inject(presenter: BookRegisterPresenterInput) {
+        self.presenter = presenter
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
@@ -46,7 +51,7 @@ class BookRegisterViewController: UIViewController {
     }
     
     @IBAction func pressedBookRegisterButton(_ sender: Any) {
-        //self.presenter.pressedLoginButton()
+        self.presenter.pressedBookRegisterButton(inputTitle: inputTitleTextField.text!, inputAuthor: inputAuthorTextField.text!, inputPublisher: inputPublisherTextField.text!, inputImage: uploadedPhotoImageView.image?.jpegData(compressionQuality: 0.5))
     }
 }
 
@@ -58,4 +63,14 @@ extension BookRegisterViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+
+//MARK: - Extension BookRegisterPresenterOutput -
+extension BookRegisterViewController: BookRegisterPresenterOutput {
+    
+    func showErrorPost(errorMessage: String) {
+        
+    }
+    
+
 }

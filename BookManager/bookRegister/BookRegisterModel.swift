@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import Firebase
+
+protocol BookRegisterModelInput {
+    
+}
+
+final class BookRegisterModel: BookRegisterModelInput {
+
+}
