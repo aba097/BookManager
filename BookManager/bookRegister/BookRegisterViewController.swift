@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class BookRegisterViewController: UIViewController {
 
@@ -18,8 +19,9 @@ class BookRegisterViewController: UIViewController {
     
     @IBOutlet weak var readByISBNBarcodeView: UIView!
     
-    private var imagepicker: UIImagePickerController! //フォトライブラリ操作
-
+    private var imagepicker: UIImagePickerController = UIImagePickerController() //フォトライブラリ操作
+    private lazy var captureSession: AVCaptureSession = AVCaptureSession()
+    
     private var presenter: BookRegisterPresenterInput!
     func inject(presenter: BookRegisterPresenterInput) {
         self.presenter = presenter
@@ -28,6 +30,8 @@ class BookRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
+        
+        setupBarcodeCapture()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -41,9 +45,36 @@ class BookRegisterViewController: UIViewController {
         inputPublisherTextField.delegate = self
         inputISBNCodeTextField.delegate = self
         
-        imagepicker = UIImagePickerController()
         imagepicker.delegate = self
         
+    }
+    
+    func setupBarcodeCapture(){
+        lazy var captureDevice: AVCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)!
+            
+        var captureInput: AVCaptureInput? = nil
+        lazy var Output: AVCaptureMetadataOutput = {
+            let output = AVCaptureMetadataOutput()
+            output.setMetadataObjectsDelegate(self, queue: .main)
+            return output
+        }()
+        lazy var capturePreviewLayer: AVCaptureVideoPreviewLayer = {
+            let layer = AVCaptureVideoPreviewLayer(session: self.captureSession)
+            return layer
+        }()
+        
+        do {
+            captureInput = try AVCaptureDeviceInput(device: captureDevice)
+            self.captureSession.addInput(captureInput!)
+            self.captureSession.addOutput(Output)
+            Output.metadataObjectTypes = Output.availableMetadataObjectTypes
+            capturePreviewLayer.frame = self.readByISBNBarcodeView?.bounds ?? CGRect.zero
+            capturePreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+           // capturePreviewLayer.connection?.videoOrientation = .landscapeRight
+            self.readByISBNBarcodeView?.layer.addSublayer(capturePreviewLayer)
+        }catch {
+            self.captureSession.commitConfiguration()
+        }
     }
   
     @IBAction func pressedPhotoUploadButton(_ sender: Any) {
@@ -55,7 +86,22 @@ class BookRegisterViewController: UIViewController {
     }
     
     
-    @IBAction func pressedCameraBootOrEndButton(_ sender: Any) {
+    @IBAction func pressedCameraBootOrEndButton(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            self.readByISBNBarcodeView.isHidden = false
+            if !self.captureSession.isRunning {
+                DispatchQueue.global(qos: .background).async{
+                    self.captureSession.startRunning()
+                }
+            }
+        }else{
+            self.readByISBNBarcodeView.isHidden = true
+            if self.captureSession.isRunning {
+                self.captureSession.stopRunning()
+            }
+        }
     }
     
     @IBAction func pressedBookRegisterButton(_ sender: Any) {
@@ -70,6 +116,16 @@ extension BookRegisterViewController: UITextFieldDelegate {
         // キーボードを閉じる
         textField.resignFirstResponder()
         return true
+    }
+}
+
+//MARK: - AVCaptureMetadataOutputObjects -
+extension BookRegisterViewController: AVCaptureMetadataOutputObjectsDelegate {
+    //バーコード読み取り
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+
+        self.presenter.scanISBNCode(avMetadataObjects: metadataObjects)
+
     }
 }
 

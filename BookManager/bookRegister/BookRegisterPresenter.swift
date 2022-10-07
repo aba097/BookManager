@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import AVFoundation
 
 protocol BookRegisterPresenterInput {
     func pressedBookRegisterButton(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?)
     func pressedISBNSearchButton(inputISBNCode: String)
+    func scanISBNCode(avMetadataObjects: [AVMetadataObject])
     func pressedPhotoUploadButton()
 }
 
@@ -42,6 +44,23 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     }
     
     func pressedISBNSearchButton(inputISBNCode: String) {
+        fetchBookInfo(inputISBNCode: inputISBNCode)
+    }
+    
+    func scanISBNCode(avMetadataObjects: [AVMetadataObject]) {
+        let objects = avMetadataObjects
+        
+        for metadataObject in objects {
+            if metadataObject.type == AVMetadataObject.ObjectType.ean8 ||  metadataObject.type == AVMetadataObject.ObjectType.ean13 {
+//                guard self.capturePreviewLayer.transformedMetadataObject(for: metadataObject) is AVMetadataMachineReadableCodeObject else { continue }
+                    if let object = metadataObject as? AVMetadataMachineReadableCodeObject {
+                    fetchBookInfo(inputISBNCode: object.stringValue!)
+                }
+            }
+        }
+    }
+        
+    func fetchBookInfo(inputISBNCode: String){
         Task.detached {
             do {
                 let book: Book = try await self.model.fetchBookInfo(ISBNCode: inputISBNCode)
