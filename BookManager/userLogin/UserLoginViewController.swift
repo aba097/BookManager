@@ -20,12 +20,6 @@ class UserLoginViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.viewDidLoad()
-        setup()
-    }
-    
-    func setup() {
-        self.userSelectionPickerView.dataSource = self
-        self.userSelectionPickerView.delegate = self
     }
     
     @IBAction func pressedLoginButton(_ sender: Any) {
@@ -45,7 +39,7 @@ extension UserLoginViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     //pickerviewの行数
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        self.presenter.numberOfUsers
+        return self.presenter.numberOfUsers
     }
     
     //pickerviewの各データ
@@ -75,6 +69,13 @@ extension UserLoginViewController: UserLoginPresenterOutput{
         alert.addAction(okAction)
         DispatchQueue.main.sync {
             present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func setupPickerView(){
+        DispatchQueue.main.sync {
+            self.userSelectionPickerView.dataSource = self
+            self.userSelectionPickerView.delegate = self
         }
     }
     
