@@ -16,14 +16,14 @@ class UserLoginViewController: UIViewController {
         self.presenter = presenter
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         
-        setup()
         presenter.viewDidLoad()
+        setup()
     }
     
-    func setup(){
+    func setup() {
         self.userSelectionPickerView.dataSource = self
         self.userSelectionPickerView.delegate = self
     }
@@ -62,7 +62,22 @@ extension UserLoginViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
 }
 
+//MARK: - Extension UserLoginPresenterOutput -
 extension UserLoginViewController: UserLoginPresenterOutput{
+    func showErrorAtUsersFetchAndExit(errorMessage: String) {
+        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            //TODO: アプリを強制終了するようにしているが，再接続を試みるなど他のやり方があるかも
+            //TODO: （Appleのガイドラインによるとプログラムから終了は勧められていない）
+            exit(0)
+        })
+        alert.addAction(okAction)
+        DispatchQueue.main.sync {
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func transitonToBookManagement(user: User) {
         //TODO: 画面遷移のコードを追加
     }

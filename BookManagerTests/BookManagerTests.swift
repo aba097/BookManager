@@ -25,6 +25,19 @@ final class BookManagerTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
+    
+    func testFetchUsers() async {
+        let model = UserLoginModel()
+        do {
+            let res = try await model.fetchUser()
+            XCTAssertEqual(res[0].id, "KRDfMH9C84xQ9ZAwTbXE")
+            XCTAssertEqual(res[0].name, "tohki")
+            XCTAssertEqual(res[0].isRoot, true)
+        }catch{
+            print("ERROR Message", error.localizedDescription)
+        }
+    }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

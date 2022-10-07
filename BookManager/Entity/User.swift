@@ -8,10 +8,12 @@
 import Foundation
 
 class User {
+    var id: String
     var name: String
     var isRoot: Bool
     
-    init(name: String, isRoot: Bool) {
+    init(id: String, name: String, isRoot: Bool) {
+        self.id = id
         self.name = name
         self.isRoot = isRoot
     }

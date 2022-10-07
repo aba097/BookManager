@@ -17,6 +17,7 @@ protocol UserLoginPresenterInput {
 
 protocol UserLoginPresenterOutput: AnyObject {
     func transitonToBookManagement(user: User)
+    func showErrorAtUsersFetchAndExit(errorMessage: String)
 }
 
 final class UserLoginPresenter: UserLoginPresenterInput {
@@ -33,7 +34,13 @@ final class UserLoginPresenter: UserLoginPresenterInput {
     }
     
     func viewDidLoad() {
-        users = model.fetchUserMock()
+        Task.detached {
+            do {
+                self.users = try await self.model.fetchUser()
+            }catch{
+                self.view.showErrorAtUsersFetchAndExit(errorMessage: error.localizedDescription)
+            }
+        }
     }
     
     var numberOfUsers: Int {
