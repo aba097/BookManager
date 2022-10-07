@@ -18,6 +18,8 @@ class BookRegisterViewController: UIViewController {
     
     @IBOutlet weak var readByISBNBarcodeView: UIView!
     
+    private var imagepicker: UIImagePickerController! //フォトライブラリ操作
+
     private var presenter: BookRegisterPresenterInput!
     func inject(presenter: BookRegisterPresenterInput) {
         self.presenter = presenter
@@ -38,12 +40,18 @@ class BookRegisterViewController: UIViewController {
         inputAuthorTextField.delegate = self
         inputPublisherTextField.delegate = self
         inputISBNCodeTextField.delegate = self
+        
+        imagepicker = UIImagePickerController()
+        imagepicker.delegate = self
+        
     }
   
     @IBAction func pressedPhotoUploadButton(_ sender: Any) {
+        self.presenter.pressedPhotoUploadButton()
     }
     
     @IBAction func pressedISBNSearchButton(_ sender: Any) {
+        self.presenter.pressedISBNSearchButton(inputISBNCode: inputISBNCodeTextField.text!)
     }
     
     
@@ -65,6 +73,25 @@ extension BookRegisterViewController: UITextFieldDelegate {
     }
 }
 
+//MARK: - ImagePicker -
+extension BookRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    //画像アップロード時
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        self.uploadedPhotoImageView.image = info[.originalImage] as? UIImage
+        //フォトライブラリと閉じる
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    //フォトライブラリのキャンセルボタンをクリック時
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        //フォトライブラリ閉じる
+        picker.dismiss(animated: true, completion: nil)
+
+    }
+}
+
 //MARK: - Extension BookRegisterPresenterOutput -
 extension BookRegisterViewController: BookRegisterPresenterOutput {
     
@@ -76,6 +103,28 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showPhotoUploadAlert() {
+        let alert: UIAlertController = UIAlertController(title: "選択してください", message:  "", preferredStyle:  UIAlertController.Style.alert)
+        
+        let cameraAction: UIAlertAction = UIAlertAction(title: "カメラを起動", style: .default, handler:{
+            (action: UIAlertAction!) -> Void in
+            self.imagepicker.sourceType = .camera
+            self.present(self.imagepicker, animated: true)
+        })
+        
+        let libraryAction: UIAlertAction = UIAlertAction(title: "フォトライブラリを起動", style: .default, handler:{
+            (action: UIAlertAction!) -> Void in
+            self.imagepicker.sourceType = .photoLibrary
+            self.present(self.imagepicker, animated: true)
+        })
+        
+        alert.addAction(cameraAction)
+        alert.addAction(libraryAction)
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        //alert表示
         present(alert, animated: true, completion: nil)
     }
 

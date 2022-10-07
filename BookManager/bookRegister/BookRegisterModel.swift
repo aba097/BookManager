@@ -9,9 +9,13 @@ import Foundation
 import Firebase
 
 protocol BookRegisterModelInput {
-    
+    func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?)
 }
 
 final class BookRegisterModel: BookRegisterModelInput {
+    func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
+        
+    }
+    
 
 }

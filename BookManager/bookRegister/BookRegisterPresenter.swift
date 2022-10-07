@@ -10,11 +10,13 @@ import Foundation
 protocol BookRegisterPresenterInput {
     func pressedBookRegisterButton(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?)
     func pressedISBNSearchButton(inputISBNCode: String)
+    func pressedPhotoUploadButton()
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
     func showErrorBookInfoPost(errorMessage: String)
     func showErrorNotInputTitle(errorMessage: String)
+    func showPhotoUploadAlert()
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
@@ -32,9 +34,17 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
             self.view.showErrorNotInputTitle(errorMessage: "Title is required")
             return
         }
+        
+        model.postBookInfo(inputTitle: inputTitle, inputAuthor: inputAuthor, inputPublisher: inputPublisher, inputImage: inputImage)
+
     }
     
     func pressedISBNSearchButton(inputISBNCode: String) {
         
     }
+    
+    func pressedPhotoUploadButton() {
+        view.showPhotoUploadAlert()
+    }
+    
 }
