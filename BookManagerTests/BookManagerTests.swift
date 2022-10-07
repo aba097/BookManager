@@ -38,6 +38,23 @@ final class BookManagerTests: XCTestCase {
         }
     }
     
+    func testFetchBookData() async {
+                
+        let model = BookRegisterModel()
+        do {
+            let res = try await model.fetchBookInfo(ISBNCode: "978-4-02-331568-6")
+            XCTAssertEqual(res.title, "ＴＯＥＩＣ　Ｌ＆Ｒ　ＴＥＳＴ")
+        }catch{
+            print(error)
+        }
+        
+        do {
+            let res = try await model.fetchBookInfo(ISBNCode: "")
+        }catch{
+            print("ERROR", error.localizedDescription)
+        }
+    }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

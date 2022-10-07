@@ -94,8 +94,8 @@ extension BookRegisterViewController: UIImagePickerControllerDelegate, UINavigat
 
 //MARK: - Extension BookRegisterPresenterOutput -
 extension BookRegisterViewController: BookRegisterPresenterOutput {
-    
-    func showErrorBookInfoPost(errorMessage: String) {
+
+    func showErrorPostBookInfo(errorMessage: String) {
         
     }
     
@@ -128,4 +128,25 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         present(alert, animated: true, completion: nil)
     }
 
+    func setFetchBookInfo(title: String, author: String, publisher: String, image: Data?) {
+        DispatchQueue.main.sync {
+            self.inputTitleTextField.text = title
+            self.inputAuthorTextField.text = author
+            self.inputPublisherTextField.text = publisher
+            
+            if let image = image {
+                self.uploadedPhotoImageView.image = UIImage(data: image)
+            }
+        }
+    }
+    
+    func showErrorFetchBookInfo(errorMessage: String) {
+        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okAction)
+        DispatchQueue.main.sync {
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
 }

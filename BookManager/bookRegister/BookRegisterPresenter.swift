@@ -14,9 +14,11 @@ protocol BookRegisterPresenterInput {
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
-    func showErrorBookInfoPost(errorMessage: String)
+    func showErrorPostBookInfo(errorMessage: String)
     func showErrorNotInputTitle(errorMessage: String)
     func showPhotoUploadAlert()
+    func setFetchBookInfo(title: String, author: String, publisher: String, image: Data?)
+    func showErrorFetchBookInfo(errorMessage: String)
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
@@ -40,7 +42,14 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     }
     
     func pressedISBNSearchButton(inputISBNCode: String) {
-        
+        Task.detached {
+            do {
+                let book: Book = try await self.model.fetchBookInfo(ISBNCode: inputISBNCode)
+                self.view.setFetchBookInfo(title: book.title, author: book.author, publisher: book.publisher, image: book.image)
+            }catch {
+                self.view.showErrorFetchBookInfo(errorMessage: error.localizedDescription)
+            }
+        }
     }
     
     func pressedPhotoUploadButton() {
