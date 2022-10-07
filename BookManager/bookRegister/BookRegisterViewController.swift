@@ -68,9 +68,15 @@ extension BookRegisterViewController: UITextFieldDelegate {
 //MARK: - Extension BookRegisterPresenterOutput -
 extension BookRegisterViewController: BookRegisterPresenterOutput {
     
-    func showErrorPost(errorMessage: String) {
+    func showErrorBookInfoPost(errorMessage: String) {
         
     }
     
+    func showErrorNotInputTitle(errorMessage: String) {
+        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
 
 }

@@ -13,7 +13,8 @@ protocol BookRegisterPresenterInput {
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
-    func showErrorPost(errorMessage: String)
+    func showErrorBookInfoPost(errorMessage: String)
+    func showErrorNotInputTitle(errorMessage: String)
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
@@ -27,7 +28,10 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     }
     
     func pressedBookRegisterButton(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
-        
+        if inputTitle == "" {
+            self.view.showErrorNotInputTitle(errorMessage: "Title is required")
+            return
+        }
     }
     
     func pressedISBNSearchButton(inputISBNCode: String) {
