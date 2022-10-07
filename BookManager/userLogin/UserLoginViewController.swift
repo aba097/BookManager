@@ -81,6 +81,12 @@ extension UserLoginViewController: UserLoginPresenterOutput{
     
     func transitonToBookManagement(user: User) {
         //TODO: 画面遷移のコードを追加
+
+        let bookTabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BookTabBar") as! UITabBarController
+        bookTabVC.modalPresentationStyle = .fullScreen
+        //(bookTabVC.viewControllers![0] as! BookManagementViewController).hoge = "hoge"
+        
+        self.present(bookTabVC, animated: true, completion: nil) // 画面遷移
     }
     
     
