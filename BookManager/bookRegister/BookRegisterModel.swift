@@ -7,15 +7,44 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 protocol BookRegisterModelInput {
     func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?)
     func fetchBookInfo(ISBNCode: String) async throws -> Book
+    
+    var delegate: BookRegisterModelDelegate? { get set }
+}
+
+protocol BookRegisterModelDelegate {
+    func postBookInfoResult(result: Result<String, Error>)
 }
 
 final class BookRegisterModel: BookRegisterModelInput {
-   
+    
+    var delegate: BookRegisterModelDelegate?
+    
     func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
+        
+        if inputImage == nil {
+            return
+        }
+        
+        let storage = Storage.storage()
+        let reference = storage.reference()
+        
+        let path = "bookImage/test.jpeg"
+        let imageRef = reference.child(path)
+      
+        let uploadTask = imageRef.putData(inputImage!)
+        
+        uploadTask.observe(.success) { _ in
+            self.delegate?.postBookInfoResult(result: .success("登録完了"))
+        }
+        
+        uploadTask.observe(.failure) { snapshot in
+            self.delegate?.postBookInfoResult(result: .failure(snapshot.error!))
+        }
         
     }
     

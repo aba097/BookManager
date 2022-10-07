@@ -21,6 +21,7 @@ class BookRegisterViewController: UIViewController {
     
     private var imagepicker: UIImagePickerController = UIImagePickerController() //フォトライブラリ操作
     private lazy var captureSession: AVCaptureSession = AVCaptureSession()
+    private let captureSessionQueue = DispatchQueue(label: "captureSessionQueue")
     
     private var presenter: BookRegisterPresenterInput!
     func inject(presenter: BookRegisterPresenterInput) {
@@ -92,7 +93,7 @@ class BookRegisterViewController: UIViewController {
         if sender.isSelected {
             self.readByISBNBarcodeView.isHidden = false
             if !self.captureSession.isRunning {
-                DispatchQueue.global(qos: .background).async{
+                self.captureSessionQueue.async {
                     self.captureSession.startRunning()
                 }
             }
@@ -150,9 +151,19 @@ extension BookRegisterViewController: UIImagePickerControllerDelegate, UINavigat
 
 //MARK: - Extension BookRegisterPresenterOutput -
 extension BookRegisterViewController: BookRegisterPresenterOutput {
-
-    func showErrorPostBookInfo(errorMessage: String) {
-        
+    
+    func showSuccessPostBookInfo(message: String) {
+        let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showErrorPostBookInfo(message: String) {
+        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func showErrorNotInputTitle(errorMessage: String) {

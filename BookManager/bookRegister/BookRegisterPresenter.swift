@@ -16,7 +16,8 @@ protocol BookRegisterPresenterInput {
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
-    func showErrorPostBookInfo(errorMessage: String)
+    func showSuccessPostBookInfo(message: String)
+    func showErrorPostBookInfo(message: String)
     func showErrorNotInputTitle(errorMessage: String)
     func showPhotoUploadAlert()
     func setFetchBookInfo(title: String, author: String, publisher: String, image: Data?)
@@ -31,6 +32,7 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     init(view: BookRegisterPresenterOutput, model: BookRegisterModelInput) {
         self.view = view
         self.model = model
+        self.model.delegate = self
     }
     
     func pressedBookRegisterButton(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
@@ -38,9 +40,8 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
             self.view.showErrorNotInputTitle(errorMessage: "Title is required")
             return
         }
-        
-        model.postBookInfo(inputTitle: inputTitle, inputAuthor: inputAuthor, inputPublisher: inputPublisher, inputImage: inputImage)
-
+    
+        self.model.postBookInfo(inputTitle: inputTitle, inputAuthor: inputAuthor, inputPublisher: inputPublisher, inputImage: inputImage)
     }
     
     func pressedISBNSearchButton(inputISBNCode: String) {
@@ -72,7 +73,21 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     }
     
     func pressedPhotoUploadButton() {
-        view.showPhotoUploadAlert()
+        self.view.showPhotoUploadAlert()
     }
+    
+}
+
+extension BookRegisterPresenter: BookRegisterModelDelegate {
+    func postBookInfoResult(result: Result<String, Error>) {
+        switch result {
+        case .success(let successMessage):
+            self.view.showSuccessPostBookInfo(message: successMessage)
+        case .failure(let error):
+            self.view.showErrorPostBookInfo(message: error.localizedDescription)
+        }
+
+    }
+    
     
 }
