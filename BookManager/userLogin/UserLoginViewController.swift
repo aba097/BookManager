@@ -84,7 +84,7 @@ extension UserLoginViewController: UserLoginPresenterOutput{
 
         let bookTabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BookTabBar") as! UITabBarController
         bookTabVC.modalPresentationStyle = .fullScreen
-        //(bookTabVC.viewControllers![0] as! BookManagementViewController).hoge = "hoge"
+        //(bookTabVC.viewControllers![1] as! BookRegisterViewController).test = "hoge"
         
         self.present(bookTabVC, animated: true, completion: nil) // 画面遷移
     }

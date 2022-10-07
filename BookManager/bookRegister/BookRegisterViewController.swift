@@ -18,8 +18,19 @@ class BookRegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupDelegate()
+    }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //TextField以外をタッチしたときにキーボードを閉じる
+        self.view.endEditing(true)
+    }
+    
+    func setupDelegate(){
+        inputTitleTextField.delegate = self
+        inputAuthorTextField.delegate = self
+        inputPublisherTextField.delegate = self
+        inputISBNCodeTextField.delegate = self
     }
   
     @IBAction func pressedISBNSearchButton(_ sender: Any) {
@@ -30,5 +41,15 @@ class BookRegisterViewController: UIViewController {
     }
     
     @IBAction func pressedBookRegisterButton(_ sender: Any) {
+    }
+}
+
+//  MARK: - TextField -
+extension BookRegisterViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // キーボードを閉じる
+        textField.resignFirstResponder()
+        return true
     }
 }
