@@ -14,7 +14,7 @@ protocol UserLoginModelInput {
 }
 
 final class UserLoginModel: UserLoginModelInput {
-    y
+    
     func fetchUser() async throws -> [User] {
         var users: [User] = []
         let db = Firestore.firestore()
