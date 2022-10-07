@@ -14,6 +14,8 @@ class BookRegisterViewController: UIViewController {
     @IBOutlet weak var inputPublisherTextField: UITextField!
     @IBOutlet weak var inputISBNCodeTextField: UITextField!
 
+    @IBOutlet weak var uploadedPhotoImageView: UIImageView!
+    
     @IBOutlet weak var readByISBNBarcodeView: UIView!
     
     override func viewDidLoad() {
@@ -33,6 +35,9 @@ class BookRegisterViewController: UIViewController {
         inputISBNCodeTextField.delegate = self
     }
   
+    @IBAction func pressedPhotoUploadButton(_ sender: Any) {
+    }
+    
     @IBAction func pressedISBNSearchButton(_ sender: Any) {
     }
     
@@ -41,6 +46,7 @@ class BookRegisterViewController: UIViewController {
     }
     
     @IBAction func pressedBookRegisterButton(_ sender: Any) {
+        //self.presenter.pressedLoginButton()
     }
 }
 
