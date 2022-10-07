@@ -156,14 +156,18 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.sync {
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func showErrorPostBookInfo(message: String) {
         let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.sync {
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func showErrorNotInputTitle(errorMessage: String) {

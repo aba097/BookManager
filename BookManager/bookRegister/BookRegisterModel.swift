@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseStorage
+import FirebaseFirestore
 
 protocol BookRegisterModelInput {
     func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?)
@@ -26,27 +27,55 @@ final class BookRegisterModel: BookRegisterModelInput {
     
     func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
         
+        var book = Book(title: inputTitle, author: inputAuthor, publisher: inputPublisher, image: inputImage, imageUrl: "")
+        
         if inputImage == nil {
-            return
+            self.postBookInfoToFireStore(book: book)
+        }else {
+            
+            let storage = Storage.storage()
+            let reference = storage.reference()
+            
+            let path = "bookImage/" + book.id + ".jpeg"
+            let imageRef = reference.child(path)
+            
+            let uploadTask = imageRef.putData(inputImage!)
+            
+            uploadTask.observe(.success) { _ in
+                imageRef.downloadURL { url, _ in
+                    if let url = url {
+                        book.imageUrl = url.absoluteString
+                        self.postBookInfoToFireStore(book: book)
+                    }
+                }
+            }
+            
+            uploadTask.observe(.failure) { snapshot in
+                self.delegate?.postBookInfoResult(result: .failure(snapshot.error!))
+            }
         }
-        
-        let storage = Storage.storage()
-        let reference = storage.reference()
-        
-        let path = "bookImage/test.jpeg"
-        let imageRef = reference.child(path)
-      
-        let uploadTask = imageRef.putData(inputImage!)
-        
-        uploadTask.observe(.success) { _ in
-            self.delegate?.postBookInfoResult(result: .success("登録完了"))
-        }
-        
-        uploadTask.observe(.failure) { snapshot in
-            self.delegate?.postBookInfoResult(result: .failure(snapshot.error!))
-        }
-        
     }
+    
+    func postBookInfoToFireStore(book: Book) {
+        let db = Firestore.firestore()
+        Task.detached {
+            do {
+                try await db.collection("books").document(book.id).setData([
+                    "title": book.title,
+                    "author": book.author,
+                    "publisher": book.publisher,
+                    "imageUrl": book.imageUrl!
+                ])
+                self.delegate?.postBookInfoResult(result: .success("登録完了"))
+            } catch {
+                self.delegate?.postBookInfoResult(result: .failure(error))
+            }
+        }
+        
+
+    }
+    
+    
     
     //OpenDBAPIを使用して図書データ取得
     func fetchBookInfo(ISBNCode: String) async throws -> Book{
@@ -60,7 +89,7 @@ final class BookRegisterModel: BookRegisterModelInput {
                 image = try? await downloadData(urlString: bookdata[0].summary.cover)
             }
             
-            return Book(title: bookdata[0].summary.title, author: bookdata[0].summary.author, publisher: bookdata[0].summary.publisher, image: image)
+            return Book(title: bookdata[0].summary.title, author: bookdata[0].summary.author, publisher: bookdata[0].summary.publisher, image: image, imageUrl: nil)
        
         }catch {
             throw error
