@@ -17,6 +17,8 @@ protocol BookRegisterModelInput {
     var delegate: BookRegisterModelDelegate? { get set }
 }
 
+//delegateを追加したことによってテストがしづらくなった
+//async awaitでimageRef.putDataの終了を待つことができれば必要なくなりそう
 protocol BookRegisterModelDelegate {
     func postBookInfoResult(result: Result<String, Error>)
 }
@@ -27,12 +29,12 @@ final class BookRegisterModel: BookRegisterModelInput {
     
     func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
         
-        var book = Book(title: inputTitle, author: inputAuthor, publisher: inputPublisher, image: inputImage, imageUrl: "")
+        let book = Book(title: inputTitle, author: inputAuthor, publisher: inputPublisher, image: inputImage, imageUrl: "")
         
         if inputImage == nil {
             self.postBookInfoToFireStore(book: book)
         }else {
-            
+            //画像がある場合は画像をアップロードし，画像のURLをbook.imageUrlに格納
             let storage = Storage.storage()
             let reference = storage.reference()
             
