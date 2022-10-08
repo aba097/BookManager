@@ -41,7 +41,6 @@ class BookDetailTableViewCell: UITableViewCell {
         
         if book.imageUrl == "" { return }
     
-        //TODO: 非同期処理でImageUrlからImageを取得
         DispatchQueue.global().async {
             do {
                 let imageData: Data? = try Data(contentsOf: URL(string: book.imageUrl)!)
