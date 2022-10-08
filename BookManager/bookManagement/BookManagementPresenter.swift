@@ -14,6 +14,7 @@ protocol BookManagementPresenterInput {
 protocol BookManagementPresenterOutput: AnyObject {
     func showInFetchActivityIndicatorAndHideBookManageView()
     func hideInFetchActivityIndicatorAndShowBookManageView()
+    func showErrorFetchBooks(errorMessage: String)
 }
 
 final class BookManagementPresenter: BookManagementPresenterInput {
@@ -31,6 +32,10 @@ final class BookManagementPresenter: BookManagementPresenterInput {
     }
     
     func viewDidLoad() {
+        fetchBooks(searchText: "")
+    }
+    
+    func fetchBooks(searchText: String){
         view.showInFetchActivityIndicatorAndHideBookManageView()
         
         Task.detached {
@@ -38,7 +43,7 @@ final class BookManagementPresenter: BookManagementPresenterInput {
                 self.books = try await self.model.fetchBooks()
                 self.view.hideInFetchActivityIndicatorAndShowBookManageView()
             }catch {
-                
+                self.view.showErrorFetchBooks(errorMessage: error.localizedDescription)
             }
         }
     }

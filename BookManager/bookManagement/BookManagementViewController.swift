@@ -71,4 +71,13 @@ extension BookManagementViewController: BookManagementPresenterOutput {
         }
     }
     
+    func showErrorFetchBooks(errorMessage: String) {
+        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okAction)
+        DispatchQueue.main.sync {
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
 }
