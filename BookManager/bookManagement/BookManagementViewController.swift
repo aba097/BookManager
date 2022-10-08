@@ -14,7 +14,12 @@ class BookManagementViewController: UIViewController {
     @IBOutlet weak var showBookListTableView: UITableView!
     
     //TODO: 絞り込みボタンを押したときの処理を書く
-    //絞り込みボタンを押された時に、検索ワードの検索範囲（全て、タイトル、著者、出版社）、昇順降順、借りている本のみ
+    //絞り込みボタンを押された時に、検索ワードの検索範囲（全て、タイトル、著者、出版社）、借りている本のみ
+    
+    private var presenter: BookManagementPresenterInput!
+    func inject(presenter: BookManagementPresenterInput) {
+        self.presenter = presenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
