@@ -28,6 +28,7 @@ class BookManagementViewController: UIViewController {
         super.viewDidLoad()
 
         presenter.viewDidLoad()
+        
         setup()
     }
     
@@ -35,11 +36,27 @@ class BookManagementViewController: UIViewController {
         //クルクルがストップした時にクルクルを非表示にする
         inFetchActivityIndicator.hidesWhenStopped = true
         
-        
+        bookSearchBar.delegate = self
+        bookSearchBar.showsCancelButton = true
     }
 
 }
 
+//MARK: - UISearchBarDelegate -
+extension BookManagementViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+
+        print(searchBar.text!)
+    }
+}
+
+//MARK: - BookManagementPresenterOutput -
 extension BookManagementViewController: BookManagementPresenterOutput {
     
     func showInFetchActivityIndicatorAndHideBookManageView() {

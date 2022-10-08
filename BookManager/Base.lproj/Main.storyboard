@@ -290,14 +290,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="au3-tJ-fRe">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="175" width="393" height="594"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-z7-lNn">
-                                        <rect key="frame" x="5" y="50" width="383" height="56"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u5V-if-Uhe">
-                                        <rect key="frame" x="5" y="161" width="383" height="544"/>
+                                        <rect key="frame" x="5" y="50" width="383" height="539"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="253" id="Hw6-5b-gii" customClass="BookDetailTableViewCell" customModule="BookManager" customModuleProvider="target">
@@ -386,7 +382,7 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCY-y9-v67">
-                                        <rect key="frame" x="5" y="116" width="383" height="35"/>
+                                        <rect key="frame" x="5" y="5" width="383" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="絞り込み"/>
                                     </button>
@@ -395,24 +391,28 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="u5V-if-Uhe" secondAttribute="trailing" constant="5" id="48d-vc-JZh"/>
                                     <constraint firstItem="u5V-if-Uhe" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="783-wZ-rPT"/>
-                                    <constraint firstItem="XCY-y9-v67" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="CF1-xd-xr0"/>
-                                    <constraint firstItem="zVf-z7-lNn" firstAttribute="top" secondItem="au3-tJ-fRe" secondAttribute="top" constant="50" id="Nbd-BZ-O2N"/>
-                                    <constraint firstItem="u5V-if-Uhe" firstAttribute="top" secondItem="XCY-y9-v67" secondAttribute="bottom" constant="10" id="QHJ-Ua-BTv"/>
-                                    <constraint firstAttribute="trailing" secondItem="zVf-z7-lNn" secondAttribute="trailing" constant="5" id="bAq-bp-NRS"/>
-                                    <constraint firstItem="zVf-z7-lNn" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="fwh-Ba-Gmg"/>
-                                    <constraint firstItem="XCY-y9-v67" firstAttribute="top" secondItem="zVf-z7-lNn" secondAttribute="bottom" constant="10" id="sli-Fz-eae"/>
+                                    <constraint firstItem="XCY-y9-v67" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="PiZ-En-Qtp"/>
+                                    <constraint firstItem="XCY-y9-v67" firstAttribute="top" secondItem="au3-tJ-fRe" secondAttribute="top" constant="5" id="gLa-ug-qZx"/>
+                                    <constraint firstAttribute="trailing" secondItem="XCY-y9-v67" secondAttribute="trailing" constant="5" id="qcj-cT-cef"/>
+                                    <constraint firstItem="u5V-if-Uhe" firstAttribute="top" secondItem="XCY-y9-v67" secondAttribute="bottom" constant="10" id="riO-Tp-4TO"/>
                                     <constraint firstAttribute="bottom" secondItem="u5V-if-Uhe" secondAttribute="bottom" constant="5" id="tAk-5J-eXd"/>
-                                    <constraint firstAttribute="trailing" secondItem="XCY-y9-v67" secondAttribute="trailing" constant="5" id="vT5-eO-HPp"/>
                                 </constraints>
                             </view>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-z7-lNn">
+                                <rect key="frame" x="5" y="109" width="383" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PjH-d4-vRG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="au3-tJ-fRe" firstAttribute="top" secondItem="PjH-d4-vRG" secondAttribute="top" id="7qC-FU-p4e"/>
                             <constraint firstItem="au3-tJ-fRe" firstAttribute="leading" secondItem="PjH-d4-vRG" secondAttribute="leading" id="Gjd-GV-NpB"/>
+                            <constraint firstItem="zVf-z7-lNn" firstAttribute="leading" secondItem="PjH-d4-vRG" secondAttribute="leading" constant="5" id="Rvg-IL-sNw"/>
+                            <constraint firstItem="PjH-d4-vRG" firstAttribute="trailing" secondItem="zVf-z7-lNn" secondAttribute="trailing" constant="5" id="WKC-df-45I"/>
+                            <constraint firstItem="au3-tJ-fRe" firstAttribute="top" secondItem="zVf-z7-lNn" secondAttribute="bottom" constant="10" id="amt-0F-QzL"/>
                             <constraint firstItem="PjH-d4-vRG" firstAttribute="trailing" secondItem="au3-tJ-fRe" secondAttribute="trailing" id="koh-cn-6gC"/>
                             <constraint firstItem="PjH-d4-vRG" firstAttribute="bottom" secondItem="au3-tJ-fRe" secondAttribute="bottom" id="ksd-cy-vr9"/>
+                            <constraint firstItem="zVf-z7-lNn" firstAttribute="top" secondItem="PjH-d4-vRG" secondAttribute="top" constant="50" id="pqY-7X-cuD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="一覧" image="doc.on.doc" catalog="system" id="Hby-xM-Ywp"/>
@@ -425,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsE-hZ-qBc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1805" y="-289"/>
+            <point key="canvasLocation" x="1803.8167938931297" y="-289.43661971830988"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fsq-P5-c1x">
