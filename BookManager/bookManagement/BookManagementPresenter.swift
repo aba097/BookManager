@@ -22,6 +22,7 @@ protocol BookManagementPresenterInput {
     func borrowedBookSwitchIsOff()
     func swipeCellState(row: Int) -> (String, BookState, Book)
     func pressedChangeState(state: BookState, book: Book)
+    func pressedReloadButton(searchText: String)
 }
 
 protocol BookManagementPresenterOutput: AnyObject {
@@ -64,6 +65,11 @@ final class BookManagementPresenter: BookManagementPresenterInput {
     }
     
     func searchBarSearchButtonClicked(searchText: String) {
+        fetchBooks(searchText: searchText)
+    }
+    
+    
+    func pressedReloadButton(searchText: String) {
         fetchBooks(searchText: searchText)
     }
     

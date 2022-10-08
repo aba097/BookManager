@@ -360,17 +360,27 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u85-DW-Ees">
                                         <rect key="frame" x="214" y="5" width="51" height="31"/>
                                         <connections>
-                                            <action selector="borrowedBookSwitch:" destination="Uj6-0V-Eb4" eventType="valueChanged" id="dAy-FU-VfQ"/>
+                                            <action selector="borrowedBookSwitchAction:" destination="Uj6-0V-Eb4" eventType="valueChanged" id="3cu-af-L3L"/>
                                         </connections>
                                     </switch>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GP-iu-czg">
+                                        <rect key="frame" x="314" y="3" width="59" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="更新"/>
+                                        <connections>
+                                            <action selector="pressedReloadButton:" destination="Uj6-0V-Eb4" eventType="touchUpInside" id="URL-4o-Zug"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="u85-DW-Ees" firstAttribute="leading" secondItem="0c0-YD-MKr" secondAttribute="trailing" constant="20" id="25T-fb-kP7"/>
+                                    <constraint firstItem="4GP-iu-czg" firstAttribute="centerY" secondItem="u85-DW-Ees" secondAttribute="centerY" id="3w8-Zf-QbB"/>
                                     <constraint firstAttribute="trailing" secondItem="u5V-if-Uhe" secondAttribute="trailing" constant="5" id="48d-vc-JZh"/>
                                     <constraint firstItem="u5V-if-Uhe" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="783-wZ-rPT"/>
                                     <constraint firstItem="0c0-YD-MKr" firstAttribute="top" secondItem="au3-tJ-fRe" secondAttribute="top" constant="10" id="NLY-ic-EyK"/>
                                     <constraint firstItem="u85-DW-Ees" firstAttribute="centerY" secondItem="0c0-YD-MKr" secondAttribute="centerY" id="YPY-BK-94B"/>
+                                    <constraint firstAttribute="trailing" secondItem="4GP-iu-czg" secondAttribute="trailing" constant="20" id="cnK-2D-EbN"/>
                                     <constraint firstItem="u5V-if-Uhe" firstAttribute="top" secondItem="u85-DW-Ees" secondAttribute="bottom" constant="10" id="lWX-LR-I2J"/>
                                     <constraint firstAttribute="bottom" secondItem="u5V-if-Uhe" secondAttribute="bottom" constant="5" id="tAk-5J-eXd"/>
                                     <constraint firstItem="0c0-YD-MKr" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="20" id="wPy-tc-N2y"/>
@@ -397,6 +407,7 @@
                     <connections>
                         <outlet property="bookManageView" destination="au3-tJ-fRe" id="adS-bc-k8M"/>
                         <outlet property="bookSearchBar" destination="zVf-z7-lNn" id="33h-eQ-ulX"/>
+                        <outlet property="borrowedBookSwitch" destination="u85-DW-Ees" id="6ym-gK-0yO"/>
                         <outlet property="inFetchActivityIndicator" destination="77T-Yn-rU1" id="tuY-cW-Apg"/>
                         <outlet property="showBookListTableView" destination="u5V-if-Uhe" id="BiI-u5-Mmf"/>
                     </connections>

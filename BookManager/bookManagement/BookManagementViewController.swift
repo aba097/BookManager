@@ -16,6 +16,8 @@ class BookManagementViewController: UIViewController {
     @IBOutlet weak var inFetchActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var bookManageView: UIView!
     
+    @IBOutlet weak var borrowedBookSwitch: UISwitch!
+    
     private var presenter: BookManagementPresenterInput!
     func inject(presenter: BookManagementPresenterInput) {
         self.presenter = presenter
@@ -43,13 +45,18 @@ class BookManagementViewController: UIViewController {
         //showBookListTableView.register(_, forCellReuseIdentifier: "bookInfoCell")
     }
 
-    @IBAction func borrowedBookSwitch(_ sender: UISwitch) {
+    @IBAction func borrowedBookSwitchAction(_ sender: UISwitch) {
         if sender.isOn {
             presenter.borrowedBookSwitchIsOn()
         }else {
            presenter.borrowedBookSwitchIsOff()
         }
     }
+    
+    @IBAction func pressedReloadButton(_ sender: Any) {
+        self.presenter.pressedReloadButton(searchText: self.bookSearchBar.text!)
+    }
+    
 }
 
 //MARK: - TableView -
@@ -116,6 +123,7 @@ extension BookManagementViewController: BookManagementPresenterOutput {
     
     func updateBooksFilteredSearchWord() {
         DispatchQueue.main.sync {
+            self.borrowedBookSwitch.isOn = false
             self.showBookListTableView.reloadData()
         }
     }
