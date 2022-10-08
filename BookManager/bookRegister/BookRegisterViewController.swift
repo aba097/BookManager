@@ -33,6 +33,8 @@ class BookRegisterViewController: UIViewController {
         setupDelegate()
         
         setupBarcodeCapture()
+        
+       //uploadedPhotoImageView.image = UIImage(named: "noimage")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
