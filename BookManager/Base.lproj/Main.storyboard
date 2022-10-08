@@ -440,7 +440,7 @@
         <!--借りている本-->
         <scene sceneID="8b4-tJ-Fvk">
             <objects>
-                <viewController id="TyI-OA-Nd4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BorrowedBook" id="TyI-OA-Nd4" customClass="BorrowedBookViewController" customModule="BookManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="abG-L9-FaI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -531,6 +531,11 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="借りている本" image="person" catalog="system" id="qX8-PQ-rRh"/>
+                    <connections>
+                        <outlet property="borrowedBookView" destination="dfT-1e-Q96" id="FOl-Dl-x1D"/>
+                        <outlet property="inFetchActivityIndicator" destination="YX1-rx-Y4Z" id="bdb-dc-VBD"/>
+                        <outlet property="showBorrowedBookListTableView" destination="dMe-3M-H9D" id="6hS-nq-m5O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCf-Mr-xir" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
