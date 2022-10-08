@@ -95,7 +95,7 @@ extension UserLoginViewController: UserLoginPresenterOutput{
         //(bookTabVC.viewControllers![1] as! BookRegisterViewController).test = "hoge"
         
         //本登録画面
-        let bookRegisterViewController = bookTabVC.viewControllers![1] as! BookRegisterViewController
+        let bookRegisterViewController = bookTabVC.viewControllers![2] as! BookRegisterViewController
         let bookRegisterModel = BookRegisterModel()
         let bookRegisterPresenter = BookRegisterPresenter(view: bookRegisterViewController, model: bookRegisterModel)
         bookRegisterViewController.inject(presenter: bookRegisterPresenter)
