@@ -26,13 +26,6 @@ class BookDetailTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    //cellの再利用時に呼ばれる
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//
-//        self.bookThumbnailImageView.image = UIImage(named: "noimage")
-//    }
-    
     func configure(book: Book) {
         self.bookTitleLabel.text = book.title
         self.bookAuthorLabel.text = book.author
