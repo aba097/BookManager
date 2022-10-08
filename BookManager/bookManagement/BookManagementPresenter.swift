@@ -112,7 +112,7 @@ final class BookManagementPresenter: BookManagementPresenterInput {
         if matchedBooks[row].state == user.name {
             return ("返す", BookState.myselfReturn, matchedBooks[row])
         }else {
-            return (user.name, BookState.otherUser, matchedBooks[row])
+            return (matchedBooks[row].state, BookState.otherUser, matchedBooks[row])
         }
     }
     
