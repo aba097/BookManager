@@ -12,13 +12,16 @@ protocol BookManagementPresenterInput {
     var numberOfBooks: Int { get }
     func book(forRow row: Int) -> Book?
     func searchBarSearchButtonClicked(searchText: String)
+    func borrowedBookSwitchIsOn()
+    func borrowedBookSwitchIsOff()
 }
 
 protocol BookManagementPresenterOutput: AnyObject {
     func showInFetchActivityIndicatorAndHideBookManageView()
     func hideInFetchActivityIndicatorAndShowBookManageView()
     func showErrorFetchBooks(errorMessage: String)
-    func updateBooks()
+    func updateBooksFilteredSearchWord()
+    func upadteBooksFilteredBorrowedBook()
 }
 
 final class BookManagementPresenter: BookManagementPresenterInput {
@@ -29,6 +32,7 @@ final class BookManagementPresenter: BookManagementPresenterInput {
     private var user: User
     private(set) var books: [Book] = []
     private(set) var matchedBooks: [Book] = []
+    private(set) var filteredInSearchWordBooks: [Book] = []
     
     init(view: BookManagementPresenterOutput, model: BookManagementModelInput, user: User) {
         self.view = view
@@ -54,15 +58,18 @@ final class BookManagementPresenter: BookManagementPresenterInput {
     }
     
     func fetchBooks(searchText: String){
-        view.showInFetchActivityIndicatorAndHideBookManageView()
+        self.view.showInFetchActivityIndicatorAndHideBookManageView()
         
         Task.detached {
             do {
                 self.books = try await self.model.fetchBooks()
                 //TODO: 借りている人のみ表示
-                self.matchedBooks = self.model.filteringFromBooks(searchText: searchText, books: self.books)
+                self.filteredInSearchWordBooks = self.model.filteringFromBooks(searchText: searchText, books: self.books)
+                
+                self.matchedBooks = self.filteredInSearchWordBooks
+                
                 self.view.hideInFetchActivityIndicatorAndShowBookManageView()
-                self.view.updateBooks()
+                self.view.updateBooksFilteredSearchWord()
                 
             }catch {
                 //TODO: この後ReloadDataとか，hideInFetchActivityIndicatorAndShowBookManageViewした方がいいかも
@@ -70,6 +77,19 @@ final class BookManagementPresenter: BookManagementPresenterInput {
                 //self.view.hideInFetchActivityIndicatorAndShowBookManageView()
             }
         }
+    }
+    
+    func borrowedBookSwitchIsOn() {
+        self.matchedBooks = self.model.borrowedBookSwitchIsOn(filteredInSearchWordBooks: self.filteredInSearchWordBooks)
+        
+        self.view.upadteBooksFilteredBorrowedBook()
+        
+    }
+    
+    func borrowedBookSwitchIsOff() {
+        self.matchedBooks = self.filteredInSearchWordBooks
+        
+        self.view.upadteBooksFilteredBorrowedBook   ()
     }
     
 }

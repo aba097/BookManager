@@ -44,6 +44,13 @@ class BookManagementViewController: UIViewController {
         //showBookListTableView.register(_, forCellReuseIdentifier: "bookInfoCell")
     }
 
+    @IBAction func borrowedBookSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            presenter.borrowedBookSwitchIsOn()
+        }else {
+           presenter.borrowedBookSwitchIsOff()
+        }
+    }
 }
 
 //MARK: - TableView -
@@ -94,10 +101,14 @@ extension BookManagementViewController: BookManagementPresenterOutput {
         }
     }
     
-    func updateBooks() {
+    func updateBooksFilteredSearchWord() {
         DispatchQueue.main.sync {
             self.showBookListTableView.reloadData()
         }
+    }
+    
+    func upadteBooksFilteredBorrowedBook() {
+        self.showBookListTableView.reloadData()
     }
     
     func showErrorFetchBooks(errorMessage: String) {

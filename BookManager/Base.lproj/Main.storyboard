@@ -292,8 +292,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="au3-tJ-fRe">
                                 <rect key="frame" x="0.0" y="175" width="393" height="594"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="借りられている本のみ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0c0-YD-MKr">
+                                        <rect key="frame" x="20" y="10" width="174" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u5V-if-Uhe">
-                                        <rect key="frame" x="5" y="50" width="383" height="539"/>
+                                        <rect key="frame" x="5" y="46" width="383" height="543"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookInfoCell" rowHeight="253" id="Hw6-5b-gii" customClass="BookDetailTableViewCell" customModule="BookManager" customModuleProvider="target">
@@ -350,21 +356,23 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCY-y9-v67">
-                                        <rect key="frame" x="5" y="5" width="383" height="35"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="絞り込み"/>
-                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u85-DW-Ees">
+                                        <rect key="frame" x="214" y="5" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="borrowedBookSwitch:" destination="Uj6-0V-Eb4" eventType="valueChanged" id="dAy-FU-VfQ"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="u85-DW-Ees" firstAttribute="leading" secondItem="0c0-YD-MKr" secondAttribute="trailing" constant="20" id="25T-fb-kP7"/>
                                     <constraint firstAttribute="trailing" secondItem="u5V-if-Uhe" secondAttribute="trailing" constant="5" id="48d-vc-JZh"/>
                                     <constraint firstItem="u5V-if-Uhe" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="783-wZ-rPT"/>
-                                    <constraint firstItem="XCY-y9-v67" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="PiZ-En-Qtp"/>
-                                    <constraint firstItem="XCY-y9-v67" firstAttribute="top" secondItem="au3-tJ-fRe" secondAttribute="top" constant="5" id="gLa-ug-qZx"/>
-                                    <constraint firstAttribute="trailing" secondItem="XCY-y9-v67" secondAttribute="trailing" constant="5" id="qcj-cT-cef"/>
-                                    <constraint firstItem="u5V-if-Uhe" firstAttribute="top" secondItem="XCY-y9-v67" secondAttribute="bottom" constant="10" id="riO-Tp-4TO"/>
+                                    <constraint firstItem="0c0-YD-MKr" firstAttribute="top" secondItem="au3-tJ-fRe" secondAttribute="top" constant="10" id="NLY-ic-EyK"/>
+                                    <constraint firstItem="u85-DW-Ees" firstAttribute="centerY" secondItem="0c0-YD-MKr" secondAttribute="centerY" id="YPY-BK-94B"/>
+                                    <constraint firstItem="u5V-if-Uhe" firstAttribute="top" secondItem="u85-DW-Ees" secondAttribute="bottom" constant="10" id="lWX-LR-I2J"/>
                                     <constraint firstAttribute="bottom" secondItem="u5V-if-Uhe" secondAttribute="bottom" constant="5" id="tAk-5J-eXd"/>
+                                    <constraint firstItem="0c0-YD-MKr" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="20" id="wPy-tc-N2y"/>
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-z7-lNn">

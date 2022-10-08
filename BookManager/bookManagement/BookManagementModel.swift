@@ -11,6 +11,7 @@ import Firebase
 protocol BookManagementModelInput {
     func fetchBooks()async throws -> [Book]
     func filteringFromBooks(searchText: String, books: [Book]) -> [Book]
+    func borrowedBookSwitchIsOn(filteredInSearchWordBooks: [Book]) -> [Book]
 }
 
 final class BookManagementModel: BookManagementModelInput {
@@ -43,22 +44,34 @@ final class BookManagementModel: BookManagementModelInput {
             return books
         }
         
-        var matchedBooks: [Book] = []
+        var filteredInSearchWordBooks: [Book] = []
         
         for book in books {
             if book.title.lowercased().contains(searchText.lowercased()) {
-                matchedBooks.append(book)
+                filteredInSearchWordBooks.append(book)
                 continue
             }
             
             if book.author.lowercased().contains(searchText.lowercased()) {
-                matchedBooks.append(book)
+                filteredInSearchWordBooks.append(book)
                 continue
             }
             
             if book.publisher.lowercased().contains(searchText.lowercased()) {
-                matchedBooks.append(book)
+                filteredInSearchWordBooks.append(book)
                 continue
+            }
+        }
+        
+        return filteredInSearchWordBooks
+    }
+    
+    
+    func borrowedBookSwitchIsOn(filteredInSearchWordBooks: [Book]) -> [Book] {
+        var matchedBooks: [Book] = []
+        for filteredInSearchWordBook in filteredInSearchWordBooks {
+            if filteredInSearchWordBook.state != "" {
+                matchedBooks.append(filteredInSearchWordBook)
             }
         }
         
