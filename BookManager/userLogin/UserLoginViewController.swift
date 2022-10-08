@@ -92,6 +92,12 @@ extension UserLoginViewController: UserLoginPresenterOutput{
         let bookRegisterPresenter = BookRegisterPresenter(view: bookRegisterViewController, model: bookRegisterModel)
         bookRegisterViewController.inject(presenter: bookRegisterPresenter)
         
+        //本一覧画面
+        let bookManagementViewController = bookTabVC.viewControllers![0] as! BookManagementViewController
+        let bookManagementModel = BookManagementModel()
+        let bookManagementPresenter = BookManagementPresenter(view: bookManagementViewController, model: bookManagementModel, user: user)
+        bookManagementViewController.inject(presenter: bookManagementPresenter)
+        
         self.present(bookTabVC, animated: true, completion: nil) // 画面遷移
     }
     

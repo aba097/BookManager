@@ -39,3 +39,19 @@ class BookManagementViewController: UIViewController {
     }
 
 }
+
+extension BookManagementViewController: BookManagementPresenterOutput {
+    
+    func showInFetchActivityIndicatorAndHideBookManageView() {
+        self.inFetchActivityIndicator.startAnimating()
+        self.bookManageView.isHidden = true
+    }
+    
+    func hideInFetchActivityIndicatorAndShowBookManageView() {
+        DispatchQueue.main.sync {
+            self.inFetchActivityIndicator.stopAnimating()
+            self.bookManageView.isHidden = false
+        }
+    }
+    
+}
