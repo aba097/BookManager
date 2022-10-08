@@ -16,6 +16,7 @@ class UserLoginViewController: UIViewController {
         self.presenter = presenter
     }
     
+    //TODO: User読み込み終わるまでボタンを押せないようにする
     override func viewDidLoad(){
         super.viewDidLoad()
         

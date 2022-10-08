@@ -15,6 +15,9 @@ class BookDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var bookAuthorLabel: UILabel!
     @IBOutlet weak var bookPublisherLabel: UILabel!
     
+    var id: String = ""
+    var state: String = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,7 +30,10 @@ class BookDetailTableViewCell: UITableViewCell {
     }
     
     func configure(book: Book) {
-
+        
+        self.id = book.id
+        self.state = book.state
+        
         if book.state != "" {
             self.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
         }else{

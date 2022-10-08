@@ -8,14 +8,20 @@
 import Foundation
 import Firebase
 
+enum UpdateState: String{
+    case success = "Update completed"
+    case nomatch = "Book state is different"
+}
 protocol BookManagementModelInput {
     func fetchBooks()async throws -> [Book]
     func filteringFromBooks(searchText: String, books: [Book]) -> [Book]
     func borrowedBookSwitchIsOn(filteredInSearchWordBooks: [Book]) -> [Book]
+    func borrowBook(book: Book, userName: String) async throws -> UpdateState
+    func returnBook(book: Book) async throws -> UpdateState
 }
 
 final class BookManagementModel: BookManagementModelInput {
-        
+
     func fetchBooks() async throws -> [Book] {
         var books: [Book] = []
         let db = Firestore.firestore()
@@ -77,5 +83,39 @@ final class BookManagementModel: BookManagementModelInput {
         
         return matchedBooks
     }
+    
+    func borrowBook(book: Book, userName: String) async throws -> UpdateState {
+        let db = Firestore.firestore()
+        do {
+            let document = try await db.collection("books").document(book.id).getDocument()
+            if document.get("state") as! String != book.state {
+                return .nomatch
+            }
+            
+            try await db.collection("books").document(book.id).updateData(["state" : userName])
+        }catch {
+            throw error
+        }
+        
+        return .success
+    }
+    
+    func returnBook(book: Book) async throws -> UpdateState {
+        let db = Firestore.firestore()
+        do {
+            let document = try await db.collection("books").document(book.id).getDocument()
+            if document.get("state") as! String != book.state {
+                return .nomatch
+            }
+                        
+            try await db.collection("books").document(book.id).updateData(["state" : ""])
+        }catch {
+            throw error
+        }
+        
+        return .success
+    }
+    
+
     
 }
