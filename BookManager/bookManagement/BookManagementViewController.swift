@@ -27,6 +27,7 @@ class BookManagementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        presenter.viewDidLoad()
         setup()
     }
     

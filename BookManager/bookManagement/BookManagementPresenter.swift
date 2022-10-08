@@ -8,7 +8,7 @@
 import Foundation
 
 protocol BookManagementPresenterInput {
-    
+    func viewDidLoad()
 }
 
 protocol BookManagementPresenterOutput: AnyObject {
@@ -28,5 +28,14 @@ final class BookManagementPresenter: BookManagementPresenterInput {
         self.user = user
     }
     
+    func viewDidLoad() {
+        Task.detached {
+            do {
+                try await self.model.fetchBooks()
+            }catch {
+                
+            }
+        }
+    }
     
 }

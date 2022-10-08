@@ -14,9 +14,12 @@ class Book {
     var publisher: String
     var state: String
     var image: Data?
-    var imageUrl: String?
+    var imageUrl: String
     
-    init(title: String, author: String, publisher: String, state: String, image: Data?, imageUrl: String?) {
+    init(id: String?, title: String, author: String, publisher: String, state: String, image: Data?, imageUrl: String) {
+        if let id = id{
+            self.id = id
+        }
         self.title = title
         self.author = author
         self.publisher = publisher

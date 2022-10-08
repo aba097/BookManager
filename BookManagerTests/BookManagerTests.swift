@@ -38,6 +38,15 @@ final class BookManagerTests: XCTestCase {
         }
     }
     
+    func testFetchBooks() async {
+        let model = BookManagementModel()
+        do {
+            let res = try await model.fetchBooks()
+            XCTAssertEqual(res[0].title, "［増補改訂］良いコードを書く技術 ── 読みやすく保守しやすいプログラミング作法")
+        }catch {
+            print(error)
+        }
+    }
     func testFetchBookData() async {
                 
         let model = BookRegisterModel()
