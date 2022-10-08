@@ -285,123 +285,141 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCY-y9-v67">
-                                <rect key="frame" x="5" y="185" width="383" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="絞り込み"/>
-                            </button>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-z7-lNn">
-                                <rect key="frame" x="5" y="119" width="393" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u5V-if-Uhe">
-                                <rect key="frame" x="5" y="240" width="383" height="524"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="77T-Yn-rU1">
+                                <rect key="frame" x="178" y="408" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="au3-tJ-fRe">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-z7-lNn">
+                                        <rect key="frame" x="5" y="50" width="383" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u5V-if-Uhe">
+                                        <rect key="frame" x="5" y="161" width="383" height="544"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="253" id="Hw6-5b-gii" customClass="BookDetailTableViewCell" customModule="BookManager" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="383" height="253"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hw6-5b-gii" id="SIF-gj-b8h">
+                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="253"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yaF-7W-WXk">
+                                                            <rect key="frame" x="5" y="5" width="172.33333333333334" height="243"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="著者" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35V-he-MWM">
+                                                            <rect key="frame" x="187.33333333333337" y="61.333333333333336" width="170.66666666666663" height="20.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版社" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRT-Sv-lCQ">
+                                                            <rect key="frame" x="187.33333333333337" y="101.66666666666667" width="170.66666666666663" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSn-OA-A6j">
+                                                            <rect key="frame" x="187.33333333333337" y="21" width="170.66666666666663" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="yaF-7W-WXk" firstAttribute="top" secondItem="SIF-gj-b8h" secondAttribute="top" constant="5" id="5hk-6w-jLr"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="iSn-OA-A6j" secondAttribute="trailing" constant="5" id="6GR-Z4-U2P"/>
+                                                        <constraint firstItem="yaF-7W-WXk" firstAttribute="leading" secondItem="SIF-gj-b8h" secondAttribute="leading" constant="5" id="7eS-X9-R1x"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="35V-he-MWM" secondAttribute="trailing" constant="5" id="Dif-6p-Bgq"/>
+                                                        <constraint firstItem="iSn-OA-A6j" firstAttribute="leading" secondItem="yaF-7W-WXk" secondAttribute="trailing" constant="10" id="EAx-m9-0aD"/>
+                                                        <constraint firstAttribute="bottom" secondItem="yaF-7W-WXk" secondAttribute="bottom" constant="5" id="Moa-vq-keK"/>
+                                                        <constraint firstItem="mRT-Sv-lCQ" firstAttribute="top" secondItem="35V-he-MWM" secondAttribute="bottom" constant="20" id="RTS-Il-Isb"/>
+                                                        <constraint firstItem="mRT-Sv-lCQ" firstAttribute="leading" secondItem="yaF-7W-WXk" secondAttribute="trailing" constant="10" id="SbE-qW-q0T"/>
+                                                        <constraint firstItem="iSn-OA-A6j" firstAttribute="top" secondItem="SIF-gj-b8h" secondAttribute="topMargin" constant="10" id="V9r-eP-VEc"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="mRT-Sv-lCQ" secondAttribute="trailing" constant="5" id="Xej-5D-CFv"/>
+                                                        <constraint firstItem="35V-he-MWM" firstAttribute="top" secondItem="iSn-OA-A6j" secondAttribute="bottom" constant="20" id="brw-gR-dVX"/>
+                                                        <constraint firstItem="35V-he-MWM" firstAttribute="leading" secondItem="yaF-7W-WXk" secondAttribute="trailing" constant="10" id="ixV-xd-KVU"/>
+                                                        <constraint firstItem="yaF-7W-WXk" firstAttribute="width" secondItem="SIF-gj-b8h" secondAttribute="width" multiplier="0.45" id="yn8-fM-bcQ"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="bookAuthorLabel" destination="35V-he-MWM" id="Mai-fN-x4n"/>
+                                                    <outlet property="bookPublisherLabel" destination="mRT-Sv-lCQ" id="HPC-YL-GCw"/>
+                                                    <outlet property="bookThumbnailImageView" destination="yaF-7W-WXk" id="dN9-4u-l4L"/>
+                                                    <outlet property="bookTitleLabel" destination="iSn-OA-A6j" id="4Nk-lT-2vb"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="bJw-s8-ec2" customClass="TryToMoreTableViewCell" customModule="BookManager" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="303" width="383" height="79"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bJw-s8-ec2" id="MeI-ps-I60">
+                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="79"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-00-PAz">
+                                                            <rect key="frame" x="25" y="21" width="306.33333333333331" height="35"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="tinted" title="もっと見る"/>
+                                                            <connections>
+                                                                <action selector="pressedTryToMoreButton:" destination="bJw-s8-ec2" eventType="touchUpInside" id="dkI-EE-J4e"/>
+                                                            </connections>
+                                                        </button>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-MI-CCQ">
+                                                            <rect key="frame" x="341.33333333333331" y="28.666666666666671" width="20" height="20"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Drl-00-PAz" firstAttribute="top" secondItem="MeI-ps-I60" secondAttribute="topMargin" constant="10" id="Fn3-6N-T3O"/>
+                                                        <constraint firstItem="Drl-00-PAz" firstAttribute="leading" secondItem="MeI-ps-I60" secondAttribute="leadingMargin" constant="5" id="WQ8-5R-yHg"/>
+                                                        <constraint firstItem="vb3-MI-CCQ" firstAttribute="centerY" secondItem="Drl-00-PAz" secondAttribute="centerY" id="h78-u7-72X"/>
+                                                        <constraint firstItem="vb3-MI-CCQ" firstAttribute="leading" secondItem="Drl-00-PAz" secondAttribute="trailing" constant="10" id="lER-1h-lIG"/>
+                                                        <constraint firstItem="Drl-00-PAz" firstAttribute="width" secondItem="MeI-ps-I60" secondAttribute="width" multiplier="0.8" id="n1F-v1-ttU"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="bookLoadingActivityIndicatorView" destination="vb3-MI-CCQ" id="eM6-Wf-X7u"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCY-y9-v67">
+                                        <rect key="frame" x="5" y="116" width="383" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="絞り込み"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="253" id="Hw6-5b-gii" customClass="BookDetailTableViewCell" customModule="BookManager" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="383" height="253"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hw6-5b-gii" id="SIF-gj-b8h">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="253"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yaF-7W-WXk">
-                                                    <rect key="frame" x="5" y="5" width="172.33333333333334" height="243"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="著者" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35V-he-MWM">
-                                                    <rect key="frame" x="187.33333333333337" y="61.333333333333336" width="170.66666666666663" height="20.333333333333336"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版社" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRT-Sv-lCQ">
-                                                    <rect key="frame" x="187.33333333333337" y="101.66666666666667" width="170.66666666666663" height="20.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSn-OA-A6j">
-                                                    <rect key="frame" x="187.33333333333337" y="21" width="170.66666666666663" height="20.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="yaF-7W-WXk" firstAttribute="top" secondItem="SIF-gj-b8h" secondAttribute="top" constant="5" id="5hk-6w-jLr"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="iSn-OA-A6j" secondAttribute="trailing" constant="5" id="6GR-Z4-U2P"/>
-                                                <constraint firstItem="yaF-7W-WXk" firstAttribute="leading" secondItem="SIF-gj-b8h" secondAttribute="leading" constant="5" id="7eS-X9-R1x"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="35V-he-MWM" secondAttribute="trailing" constant="5" id="Dif-6p-Bgq"/>
-                                                <constraint firstItem="iSn-OA-A6j" firstAttribute="leading" secondItem="yaF-7W-WXk" secondAttribute="trailing" constant="10" id="EAx-m9-0aD"/>
-                                                <constraint firstAttribute="bottom" secondItem="yaF-7W-WXk" secondAttribute="bottom" constant="5" id="Moa-vq-keK"/>
-                                                <constraint firstItem="mRT-Sv-lCQ" firstAttribute="top" secondItem="35V-he-MWM" secondAttribute="bottom" constant="20" id="RTS-Il-Isb"/>
-                                                <constraint firstItem="mRT-Sv-lCQ" firstAttribute="leading" secondItem="yaF-7W-WXk" secondAttribute="trailing" constant="10" id="SbE-qW-q0T"/>
-                                                <constraint firstItem="iSn-OA-A6j" firstAttribute="top" secondItem="SIF-gj-b8h" secondAttribute="topMargin" constant="10" id="V9r-eP-VEc"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="mRT-Sv-lCQ" secondAttribute="trailing" constant="5" id="Xej-5D-CFv"/>
-                                                <constraint firstItem="35V-he-MWM" firstAttribute="top" secondItem="iSn-OA-A6j" secondAttribute="bottom" constant="20" id="brw-gR-dVX"/>
-                                                <constraint firstItem="35V-he-MWM" firstAttribute="leading" secondItem="yaF-7W-WXk" secondAttribute="trailing" constant="10" id="ixV-xd-KVU"/>
-                                                <constraint firstItem="yaF-7W-WXk" firstAttribute="width" secondItem="SIF-gj-b8h" secondAttribute="width" multiplier="0.45" id="yn8-fM-bcQ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="bookAuthorLabel" destination="35V-he-MWM" id="Mai-fN-x4n"/>
-                                            <outlet property="bookPublisherLabel" destination="mRT-Sv-lCQ" id="HPC-YL-GCw"/>
-                                            <outlet property="bookThumbnailImageView" destination="yaF-7W-WXk" id="dN9-4u-l4L"/>
-                                            <outlet property="bookTitleLabel" destination="iSn-OA-A6j" id="4Nk-lT-2vb"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="bJw-s8-ec2" customClass="TryToMoreTableViewCell" customModule="BookManager" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="303" width="383" height="79"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bJw-s8-ec2" id="MeI-ps-I60">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-00-PAz">
-                                                    <rect key="frame" x="25" y="21" width="306.33333333333331" height="35"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="tinted" title="もっと見る"/>
-                                                    <connections>
-                                                        <action selector="pressedTryToMoreButton:" destination="bJw-s8-ec2" eventType="touchUpInside" id="dkI-EE-J4e"/>
-                                                    </connections>
-                                                </button>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-MI-CCQ">
-                                                    <rect key="frame" x="341.33333333333331" y="28.666666666666671" width="20" height="20"/>
-                                                </activityIndicatorView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Drl-00-PAz" firstAttribute="top" secondItem="MeI-ps-I60" secondAttribute="topMargin" constant="10" id="Fn3-6N-T3O"/>
-                                                <constraint firstItem="Drl-00-PAz" firstAttribute="leading" secondItem="MeI-ps-I60" secondAttribute="leadingMargin" constant="5" id="WQ8-5R-yHg"/>
-                                                <constraint firstItem="vb3-MI-CCQ" firstAttribute="centerY" secondItem="Drl-00-PAz" secondAttribute="centerY" id="h78-u7-72X"/>
-                                                <constraint firstItem="vb3-MI-CCQ" firstAttribute="leading" secondItem="Drl-00-PAz" secondAttribute="trailing" constant="10" id="lER-1h-lIG"/>
-                                                <constraint firstItem="Drl-00-PAz" firstAttribute="width" secondItem="MeI-ps-I60" secondAttribute="width" multiplier="0.8" id="n1F-v1-ttU"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="bookLoadingActivityIndicatorView" destination="vb3-MI-CCQ" id="eM6-Wf-X7u"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="u5V-if-Uhe" secondAttribute="trailing" constant="5" id="48d-vc-JZh"/>
+                                    <constraint firstItem="u5V-if-Uhe" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="783-wZ-rPT"/>
+                                    <constraint firstItem="XCY-y9-v67" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="CF1-xd-xr0"/>
+                                    <constraint firstItem="zVf-z7-lNn" firstAttribute="top" secondItem="au3-tJ-fRe" secondAttribute="top" constant="50" id="Nbd-BZ-O2N"/>
+                                    <constraint firstItem="u5V-if-Uhe" firstAttribute="top" secondItem="XCY-y9-v67" secondAttribute="bottom" constant="10" id="QHJ-Ua-BTv"/>
+                                    <constraint firstAttribute="trailing" secondItem="zVf-z7-lNn" secondAttribute="trailing" constant="5" id="bAq-bp-NRS"/>
+                                    <constraint firstItem="zVf-z7-lNn" firstAttribute="leading" secondItem="au3-tJ-fRe" secondAttribute="leading" constant="5" id="fwh-Ba-Gmg"/>
+                                    <constraint firstItem="XCY-y9-v67" firstAttribute="top" secondItem="zVf-z7-lNn" secondAttribute="bottom" constant="10" id="sli-Fz-eae"/>
+                                    <constraint firstAttribute="bottom" secondItem="u5V-if-Uhe" secondAttribute="bottom" constant="5" id="tAk-5J-eXd"/>
+                                    <constraint firstAttribute="trailing" secondItem="XCY-y9-v67" secondAttribute="trailing" constant="5" id="vT5-eO-HPp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PjH-d4-vRG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PjH-d4-vRG" firstAttribute="trailing" secondItem="u5V-if-Uhe" secondAttribute="trailing" constant="5" id="0Ee-Gq-pmV"/>
-                            <constraint firstItem="zVf-z7-lNn" firstAttribute="leading" secondItem="PjH-d4-vRG" secondAttribute="leading" constant="5" id="4Lv-yv-eze"/>
-                            <constraint firstItem="PjH-d4-vRG" firstAttribute="bottom" secondItem="u5V-if-Uhe" secondAttribute="bottom" constant="5" id="Wbc-bl-6vk"/>
-                            <constraint firstItem="PjH-d4-vRG" firstAttribute="trailing" secondItem="XCY-y9-v67" secondAttribute="trailing" constant="5" id="YIW-ZQ-dEE"/>
-                            <constraint firstItem="zVf-z7-lNn" firstAttribute="top" secondItem="PjH-d4-vRG" secondAttribute="top" constant="60" id="aGl-32-Ylp"/>
-                            <constraint firstItem="zVf-z7-lNn" firstAttribute="trailing" secondItem="PjH-d4-vRG" secondAttribute="trailing" constant="5" id="abz-ej-LG4"/>
-                            <constraint firstItem="XCY-y9-v67" firstAttribute="leading" secondItem="PjH-d4-vRG" secondAttribute="leading" constant="5" id="bRT-br-Nvt"/>
-                            <constraint firstItem="u5V-if-Uhe" firstAttribute="leading" secondItem="PjH-d4-vRG" secondAttribute="leading" constant="5" id="cyR-GN-f3E"/>
-                            <constraint firstItem="u5V-if-Uhe" firstAttribute="top" secondItem="XCY-y9-v67" secondAttribute="bottom" constant="20" id="nfL-db-XHy"/>
-                            <constraint firstItem="XCY-y9-v67" firstAttribute="top" secondItem="zVf-z7-lNn" secondAttribute="bottom" constant="10" id="ukH-Zz-oTE"/>
+                            <constraint firstItem="au3-tJ-fRe" firstAttribute="top" secondItem="PjH-d4-vRG" secondAttribute="top" id="7qC-FU-p4e"/>
+                            <constraint firstItem="au3-tJ-fRe" firstAttribute="leading" secondItem="PjH-d4-vRG" secondAttribute="leading" id="Gjd-GV-NpB"/>
+                            <constraint firstItem="PjH-d4-vRG" firstAttribute="trailing" secondItem="au3-tJ-fRe" secondAttribute="trailing" id="koh-cn-6gC"/>
+                            <constraint firstItem="PjH-d4-vRG" firstAttribute="bottom" secondItem="au3-tJ-fRe" secondAttribute="bottom" id="ksd-cy-vr9"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="一覧" image="doc.on.doc" catalog="system" id="Hby-xM-Ywp"/>
                     <connections>
+                        <outlet property="bookManageView" destination="au3-tJ-fRe" id="adS-bc-k8M"/>
                         <outlet property="bookSearchBar" destination="zVf-z7-lNn" id="33h-eQ-ulX"/>
+                        <outlet property="inFetchActivityIndicator" destination="77T-Yn-rU1" id="tuY-cW-Apg"/>
                         <outlet property="showBookListTableView" destination="u5V-if-Uhe" id="BiI-u5-Mmf"/>
                     </connections>
                 </viewController>
