@@ -27,6 +27,13 @@ class BookDetailTableViewCell: UITableViewCell {
     }
     
     func configure(book: Book) {
+
+        if book.state != "" {
+            self.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        }else{
+            self.backgroundColor = UIColor.gray.withAlphaComponent(0)
+        }
+        
         self.bookTitleLabel.text = book.title
         self.bookAuthorLabel.text = book.author
         self.bookPublisherLabel.text = book.publisher
