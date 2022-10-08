@@ -11,10 +11,12 @@ class User {
     var id: String
     var name: String
     var isRoot: Bool
+    var order: Int
     
-    init(id: String, name: String, isRoot: Bool) {
+    init(id: String, name: String, isRoot: Bool, order: Int) {
         self.id = id
         self.name = name
         self.isRoot = isRoot
+        self.order = order
     }
 }
