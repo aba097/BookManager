@@ -9,12 +9,15 @@ import Foundation
 
 protocol BookManagementPresenterInput {
     func viewDidLoad()
+    var numberOfBooks: Int { get }
+    func book(forRow row: Int) -> Book?
 }
 
 protocol BookManagementPresenterOutput: AnyObject {
     func showInFetchActivityIndicatorAndHideBookManageView()
     func hideInFetchActivityIndicatorAndShowBookManageView()
     func showErrorFetchBooks(errorMessage: String)
+    func updateBooks()
 }
 
 final class BookManagementPresenter: BookManagementPresenterInput {
@@ -31,6 +34,15 @@ final class BookManagementPresenter: BookManagementPresenterInput {
         self.user = user
     }
     
+    var numberOfBooks: Int {
+        return books.count
+    }
+    
+    func book(forRow row: Int) -> Book? {
+        guard row < books.count else { return nil }
+        return books[row]
+    }
+    
     func viewDidLoad() {
         fetchBooks(searchText: "")
     }
@@ -42,7 +54,11 @@ final class BookManagementPresenter: BookManagementPresenterInput {
             do {
                 self.books = try await self.model.fetchBooks()
                 self.view.hideInFetchActivityIndicatorAndShowBookManageView()
+                //TODO: 詳細検索やキーワードで絞る
+                self.view.updateBooks()
+                
             }catch {
+                //TODO: この後ReloadDataとか，hideInFetchActivityIndicatorAndShowBookManageViewした方がいいかも
                 self.view.showErrorFetchBooks(errorMessage: error.localizedDescription)
             }
         }

@@ -296,7 +296,7 @@
                                         <rect key="frame" x="5" y="50" width="383" height="539"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="253" id="Hw6-5b-gii" customClass="BookDetailTableViewCell" customModule="BookManager" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookInfoCell" rowHeight="253" id="Hw6-5b-gii" customClass="BookDetailTableViewCell" customModule="BookManager" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="383" height="253"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hw6-5b-gii" id="SIF-gj-b8h">
@@ -346,37 +346,6 @@
                                                     <outlet property="bookPublisherLabel" destination="mRT-Sv-lCQ" id="HPC-YL-GCw"/>
                                                     <outlet property="bookThumbnailImageView" destination="yaF-7W-WXk" id="dN9-4u-l4L"/>
                                                     <outlet property="bookTitleLabel" destination="iSn-OA-A6j" id="4Nk-lT-2vb"/>
-                                                </connections>
-                                            </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="bJw-s8-ec2" customClass="TryToMoreTableViewCell" customModule="BookManager" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="303" width="383" height="79"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bJw-s8-ec2" id="MeI-ps-I60">
-                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="79"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-00-PAz">
-                                                            <rect key="frame" x="25" y="21" width="306.33333333333331" height="35"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="tinted" title="もっと見る"/>
-                                                            <connections>
-                                                                <action selector="pressedTryToMoreButton:" destination="bJw-s8-ec2" eventType="touchUpInside" id="dkI-EE-J4e"/>
-                                                            </connections>
-                                                        </button>
-                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-MI-CCQ">
-                                                            <rect key="frame" x="341.33333333333331" y="28.666666666666671" width="20" height="20"/>
-                                                        </activityIndicatorView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Drl-00-PAz" firstAttribute="top" secondItem="MeI-ps-I60" secondAttribute="topMargin" constant="10" id="Fn3-6N-T3O"/>
-                                                        <constraint firstItem="Drl-00-PAz" firstAttribute="leading" secondItem="MeI-ps-I60" secondAttribute="leadingMargin" constant="5" id="WQ8-5R-yHg"/>
-                                                        <constraint firstItem="vb3-MI-CCQ" firstAttribute="centerY" secondItem="Drl-00-PAz" secondAttribute="centerY" id="h78-u7-72X"/>
-                                                        <constraint firstItem="vb3-MI-CCQ" firstAttribute="leading" secondItem="Drl-00-PAz" secondAttribute="trailing" constant="10" id="lER-1h-lIG"/>
-                                                        <constraint firstItem="Drl-00-PAz" firstAttribute="width" secondItem="MeI-ps-I60" secondAttribute="width" multiplier="0.8" id="n1F-v1-ttU"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="bookLoadingActivityIndicatorView" destination="vb3-MI-CCQ" id="eM6-Wf-X7u"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

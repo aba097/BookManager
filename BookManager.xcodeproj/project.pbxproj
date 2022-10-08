@@ -30,7 +30,6 @@
 		43E29B0F28E9689900B4A23F /* BookRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */; };
 		43E29B1128E968AE00B4A23F /* BookManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */; };
 		43E29B1328E9742800B4A23F /* BookDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B1228E9742700B4A23F /* BookDetailTableViewCell.swift */; };
-		43E29B1528E9744A00B4A23F /* TryToMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E29B1428E9744A00B4A23F /* TryToMoreTableViewCell.swift */; };
 		89B379499F139A57FB4A535C /* Pods_BookManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CD3184FEE122664575ADE9 /* Pods_BookManagerTests.framework */; };
 		C1216CB399A561B2D0D32D7F /* Pods_BookManager_BookManagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3F496EEF58DB2113BC9DEA /* Pods_BookManager_BookManagerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -82,7 +81,6 @@
 		43E29B0E28E9689900B4A23F /* BookRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRegisterViewController.swift; sourceTree = "<group>"; };
 		43E29B1028E968AE00B4A23F /* BookManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManagementViewController.swift; sourceTree = "<group>"; };
 		43E29B1228E9742700B4A23F /* BookDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewCell.swift; sourceTree = "<group>"; };
-		43E29B1428E9744A00B4A23F /* TryToMoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryToMoreTableViewCell.swift; sourceTree = "<group>"; };
 		59DD5C500B1741635CDD9886 /* Pods-BookManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookManager.release.xcconfig"; path = "Target Support Files/Pods-BookManager/Pods-BookManager.release.xcconfig"; sourceTree = "<group>"; };
 		84289133F2807496DF4ADB8B /* Pods-BookManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookManagerTests.release.xcconfig"; path = "Target Support Files/Pods-BookManagerTests/Pods-BookManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE22123C0254F600ADBC4BDB /* Pods_BookManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,7 +211,6 @@
 				4378853F28F1484C008FF455 /* BookManagementPresenter.swift */,
 				4378854128F1485C008FF455 /* BookManagementModel.swift */,
 				43E29B1228E9742700B4A23F /* BookDetailTableViewCell.swift */,
-				43E29B1428E9744A00B4A23F /* TryToMoreTableViewCell.swift */,
 			);
 			path = bookManagement;
 			sourceTree = "<group>";
@@ -500,7 +497,6 @@
 				4378853428EF1033008FF455 /* User.swift in Sources */,
 				4378854228F1485C008FF455 /* BookManagementModel.swift in Sources */,
 				4378853828F0498E008FF455 /* BookRegisterPresenter.swift in Sources */,
-				43E29B1528E9744A00B4A23F /* TryToMoreTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

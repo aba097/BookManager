@@ -38,8 +38,32 @@ class BookManagementViewController: UIViewController {
         
         bookSearchBar.delegate = self
         bookSearchBar.showsCancelButton = true
+        
+        showBookListTableView.delegate = self
+        showBookListTableView.dataSource = self
+        //showBookListTableView.register(_, forCellReuseIdentifier: "bookInfoCell")
     }
 
+}
+
+//MARK: - TableView -
+extension BookManagementViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOfBooks
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bookInfoCell", for: indexPath) as! BookDetailTableViewCell
+        
+        if let book = presenter.book(forRow: indexPath.row) {
+            cell.configure(book: book)
+        }
+        
+        return cell
+        
+    }
+    
+    
 }
 
 //MARK: - UISearchBarDelegate -
@@ -58,7 +82,7 @@ extension BookManagementViewController: UISearchBarDelegate {
 
 //MARK: - BookManagementPresenterOutput -
 extension BookManagementViewController: BookManagementPresenterOutput {
-    
+
     func showInFetchActivityIndicatorAndHideBookManageView() {
         self.inFetchActivityIndicator.startAnimating()
         self.bookManageView.isHidden = true
@@ -68,6 +92,12 @@ extension BookManagementViewController: BookManagementPresenterOutput {
         DispatchQueue.main.sync {
             self.inFetchActivityIndicator.stopAnimating()
             self.bookManageView.isHidden = false
+        }
+    }
+    
+    func updateBooks() {
+        DispatchQueue.main.sync {
+            self.showBookListTableView.reloadData()
         }
     }
     
