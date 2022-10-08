@@ -13,7 +13,7 @@ import Firebase
 protocol BorrowedBookModelInput {
     func fetchBooks()async throws -> [Book]
     func returnBook(book: Book) async throws -> UpdateState
-    
+    func filteredBorrowedBooks(books: [Book], userName: String) -> [Book]
 }
 
 final class BorrowedBookModel: BorrowedBookModelInput {
@@ -39,6 +39,18 @@ final class BorrowedBookModel: BorrowedBookModelInput {
         }
         return books
     }
+    
+    func filteredBorrowedBooks(books: [Book], userName: String) -> [Book] {
+        var borrowedBooks: [Book] = []
+        for book in books {
+            if book.state == userName {
+                borrowedBooks.append(book)
+            }
+        }
+        
+        return borrowedBooks
+    }
+    
     
     func returnBook(book: Book) async throws -> UpdateState {
         let db = Firestore.firestore()

@@ -23,32 +23,95 @@ class BorrowedBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //TODO: reloadDataする
+        presenter.viewWillAppear()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setup() {
+        //クルクルがストップした時にクルクルを非表示にする
+        self.inFetchActivityIndicator.hidesWhenStopped = true
+        
+        self.showBorrowedBookListTableView.delegate = self
+        self.showBorrowedBookListTableView.dataSource = self
+        //セルの選択をできないようにする
+        self.showBorrowedBookListTableView.allowsSelection = false
     }
-    */
 
 }
 
+//MARK: - TableView -
+extension BorrowedBookViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOfBooks
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bookInfoCell", for: indexPath) as! BookDetailTableViewCell
+        
+        if let book = presenter.book(forRow: indexPath.row) {
+            cell.configure(book: book)
+        }
+        
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let editAction = UIContextualAction(style: .normal, title: "返す") { (action, view, completionHandler) in
+            
+            self.presenter.pressedBookReturn(row: indexPath.row)
+            // 実行結果に関わらず記述
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [editAction])
+
+    }
+}
+
+//MARK: - BorrowedBookPresenterOutput -
 extension BorrowedBookViewController: BorrowedBookPresenterOutput {
+  
+    
+    func updateBooks() {
+        DispatchQueue.main.sync {
+            self.showBorrowedBookListTableView.reloadData()
+        }
+    }
+    
+    func showInFetchActivityIndicatorAndHideBookManageView() {
+        self.inFetchActivityIndicator.startAnimating()
+        self.borrowedBookView.isHidden = true
+    }
+    
+    func hideInFetchActivityIndicatorAndShowBookManageView() {
+        DispatchQueue.main.sync {
+            self.inFetchActivityIndicator.stopAnimating()
+            self.borrowedBookView.isHidden = false
+        }
+    }
+    
+    func showErrorFetchBooks(errorMessage: String) {
+        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
+         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+         alert.addAction(okAction)
+         DispatchQueue.main.sync {
+             present(alert, animated: true, completion: nil)
+         }
+    }
     
     func changedStateSuccess(message: String) {
         let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+            
+            self.presenter.reloadBooks()
+        })
+                        
         alert.addAction(okAction)
         DispatchQueue.main.sync {
             present(alert, animated: true, completion: nil)
