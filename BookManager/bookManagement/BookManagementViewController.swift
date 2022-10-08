@@ -75,8 +75,7 @@ extension BookManagementViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-
-        print(searchBar.text!)
+        presenter.searchBarSearchButtonClicked(searchText: searchBar.text!)
     }
 }
 

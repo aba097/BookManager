@@ -10,9 +10,11 @@ import Firebase
 
 protocol BookManagementModelInput {
     func fetchBooks()async throws -> [Book]
+    func filteringFromBooks(searchText: String, books: [Book]) -> [Book]
 }
 
 final class BookManagementModel: BookManagementModelInput {
+        
     func fetchBooks() async throws -> [Book] {
         var books: [Book] = []
         let db = Firestore.firestore()
@@ -35,5 +37,32 @@ final class BookManagementModel: BookManagementModelInput {
         return books
     }
     
+    func filteringFromBooks(searchText: String, books: [Book]) -> [Book] {
+        
+        if searchText == "" {
+            return books
+        }
+        
+        var matchedBooks: [Book] = []
+        
+        for book in books {
+            if book.title.lowercased().contains(searchText.lowercased()) {
+                matchedBooks.append(book)
+                continue
+            }
+            
+            if book.author.lowercased().contains(searchText.lowercased()) {
+                matchedBooks.append(book)
+                continue
+            }
+            
+            if book.publisher.lowercased().contains(searchText.lowercased()) {
+                matchedBooks.append(book)
+                continue
+            }
+        }
+        
+        return matchedBooks
+    }
     
 }
