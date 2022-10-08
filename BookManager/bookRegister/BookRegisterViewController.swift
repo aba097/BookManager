@@ -19,6 +19,8 @@ class BookRegisterViewController: UIViewController {
     
     @IBOutlet weak var readByISBNBarcodeView: UIView!
     
+    @IBOutlet weak var bookRegisterButton: UIButton!
+    
     private var imagepicker: UIImagePickerController = UIImagePickerController() //フォトライブラリ操作
     private lazy var captureSession: AVCaptureSession = AVCaptureSession()
     private let captureSessionQueue = DispatchQueue(label: "captureSessionQueue")
@@ -108,6 +110,7 @@ class BookRegisterViewController: UIViewController {
     }
     
     @IBAction func pressedBookRegisterButton(_ sender: Any) {
+        self.bookRegisterButton.isEnabled = false
         self.presenter.pressedBookRegisterButton(inputTitle: inputTitleTextField.text!, inputAuthor: inputAuthorTextField.text!, inputPublisher: inputPublisherTextField.text!, inputImage: uploadedPhotoImageView.image?.jpegData(compressionQuality: 0.5))
     }
 }
@@ -159,6 +162,7 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
         DispatchQueue.main.sync {
+            self.bookRegisterButton.isEnabled = true
             present(alert, animated: true, completion: nil)
         }
     }
@@ -168,6 +172,7 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
         DispatchQueue.main.sync {
+            self.bookRegisterButton.isEnabled = true
             present(alert, animated: true, completion: nil)
         }
     }

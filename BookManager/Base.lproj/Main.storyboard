@@ -264,6 +264,7 @@
                     <tabBarItem key="tabBarItem" title="登録" image="doc.badge.plus" catalog="system" id="Q2C-q8-u0d"/>
                     <size key="freeformSize" width="393" height="1100"/>
                     <connections>
+                        <outlet property="bookRegisterButton" destination="I3F-52-k8j" id="cAu-Rm-Ksi"/>
                         <outlet property="inputAuthorTextField" destination="ML0-tP-JMJ" id="gJR-l2-9Bw"/>
                         <outlet property="inputISBNCodeTextField" destination="cRX-XA-jW6" id="NHb-Bq-54u"/>
                         <outlet property="inputPublisherTextField" destination="pw2-r2-JZe" id="xR3-Vw-3D3"/>
