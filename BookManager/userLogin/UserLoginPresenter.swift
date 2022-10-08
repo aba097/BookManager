@@ -19,6 +19,7 @@ protocol UserLoginPresenterOutput: AnyObject {
     func transitonToBookManagement(user: User)
     func showErrorAtUsersFetchAndExit(errorMessage: String)
     func setupPickerView()
+    func doEnableLoginButton()
 }
 
 final class UserLoginPresenter: UserLoginPresenterInput {
@@ -39,6 +40,7 @@ final class UserLoginPresenter: UserLoginPresenterInput {
             do {
                 self.users = try await self.model.fetchUser()
                 self.view.setupPickerView()
+                self.view.doEnableLoginButton()
             }catch{
                 self.view.showErrorAtUsersFetchAndExit(errorMessage: error.localizedDescription)
             }

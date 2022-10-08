@@ -64,6 +64,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="Lqs-Tr-0KO" id="4jV-Mg-oOw"/>
                         <outlet property="userSelectionPickerView" destination="eNR-XQ-gGI" id="wwn-aK-XW0"/>
                     </connections>
                 </viewController>

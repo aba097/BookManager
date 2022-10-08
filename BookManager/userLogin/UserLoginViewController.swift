@@ -9,6 +9,8 @@ import UIKit
 
 class UserLoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
+    
     @IBOutlet weak var userSelectionPickerView: UIPickerView!
     
     private var presenter: UserLoginPresenterInput!
@@ -16,11 +18,12 @@ class UserLoginViewController: UIViewController {
         self.presenter = presenter
     }
     
-    //TODO: User読み込み終わるまでボタンを押せないようにする
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        presenter.viewDidLoad()
+        self.loginButton.isEnabled = false
+        
+        self.presenter.viewDidLoad()
     }
     
     @IBAction func pressedLoginButton(_ sender: Any) {
@@ -73,16 +76,20 @@ extension UserLoginViewController: UserLoginPresenterOutput{
         }
     }
     
-    func setupPickerView(){
+    func setupPickerView() {
         DispatchQueue.main.sync {
             self.userSelectionPickerView.dataSource = self
             self.userSelectionPickerView.delegate = self
         }
     }
     
+    func doEnableLoginButton() {
+        DispatchQueue.main.sync {
+            self.loginButton.isEnabled = true
+        }
+    }
+    
     func transitonToBookManagement(user: User) {
-        //TODO: 画面遷移のコードを追加
-
         let bookTabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BookTabBar") as! UITabBarController
         bookTabVC.modalPresentationStyle = .fullScreen
         //(bookTabVC.viewControllers![1] as! BookRegisterViewController).test = "hoge"
