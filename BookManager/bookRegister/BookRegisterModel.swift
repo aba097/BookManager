@@ -29,7 +29,7 @@ final class BookRegisterModel: BookRegisterModelInput {
     
     func postBookInfo(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
         
-        let book = Book(title: inputTitle, author: inputAuthor, publisher: inputPublisher, image: inputImage, imageUrl: "")
+        let book = Book(title: inputTitle, author: inputAuthor, publisher: inputPublisher, state: "", image: inputImage, imageUrl: "")
         
         if inputImage == nil {
             self.postBookInfoToFireStore(book: book)
@@ -66,6 +66,7 @@ final class BookRegisterModel: BookRegisterModelInput {
                     "title": book.title,
                     "author": book.author,
                     "publisher": book.publisher,
+                    "state": book.state,
                     "imageUrl": book.imageUrl!
                 ])
                 self.delegate?.postBookInfoResult(result: .success("登録完了"))
@@ -91,7 +92,7 @@ final class BookRegisterModel: BookRegisterModelInput {
                 image = try? await downloadData(urlString: bookdata[0].summary.cover)
             }
             
-            return Book(title: bookdata[0].summary.title, author: bookdata[0].summary.author, publisher: bookdata[0].summary.publisher, image: image, imageUrl: nil)
+            return Book(title: bookdata[0].summary.title, author: bookdata[0].summary.author, publisher: bookdata[0].summary.publisher, state: "", image: image, imageUrl: nil)
        
         }catch {
             throw error

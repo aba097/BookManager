@@ -12,13 +12,15 @@ class Book {
     var title: String
     var author: String
     var publisher: String
+    var state: String
     var image: Data?
     var imageUrl: String?
     
-    init(title: String, author: String, publisher: String, image: Data?, imageUrl: String?) {
+    init(title: String, author: String, publisher: String, state: String, image: Data?, imageUrl: String?) {
         self.title = title
         self.author = author
         self.publisher = publisher
+        self.state = state
         self.image = image
         self.imageUrl = imageUrl
     }
