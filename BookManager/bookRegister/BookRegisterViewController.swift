@@ -222,7 +222,7 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
     }
     
     func captureStart() {
-        self.cameraBootOrEndButton.isSelected = !self.cameraBootOrEndButton.isSelected
+        self.cameraBootOrEndButton.isSelected = true
         self.readByISBNBarcodeView.isHidden = false
         self.captureSessionQueue.async {
             self.captureSession.startRunning()
@@ -230,7 +230,7 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
     }
     
     func captureStop() {
-        self.cameraBootOrEndButton.isSelected = !self.cameraBootOrEndButton.isSelected
+        self.cameraBootOrEndButton.isSelected = false
         self.readByISBNBarcodeView.isHidden = true
         self.captureSession.stopRunning()
     }

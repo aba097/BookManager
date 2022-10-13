@@ -87,10 +87,10 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool) {
         //MARK: IsSelectedは初期値がfalseなので注意
-        if buttonIsSelected {
-            self.view.captureStop()
-        }else {
+        if !buttonIsSelected {
             self.view.captureStart()
+        }else {
+            self.view.captureStop()
         }
     }
     
