@@ -436,6 +436,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Uj6-0V-Eb4" kind="relationship" relationship="viewControllers" id="NAv-Ck-Tx1"/>
+                        <segue destination="KFT-ii-iLX" kind="relationship" relationship="viewControllers" id="hWC-4Z-vFe"/>
                         <segue destination="TyI-OA-Nd4" kind="relationship" relationship="viewControllers" id="ToA-2V-yd1"/>
                         <segue destination="Xaw-rc-yu7" kind="relationship" relationship="viewControllers" id="8GY-cy-Oox"/>
                     </connections>
@@ -444,19 +445,69 @@
             </objects>
             <point key="canvasLocation" x="1022" y="4"/>
         </scene>
-        <!--View Controller-->
+        <!--借りる/返却-->
         <scene sceneID="hF7-Kq-urA">
             <objects>
-                <viewController id="KFT-ii-iLX" sceneMemberID="viewController">
+                <viewController id="KFT-ii-iLX" customClass="BorrowReturnViewController" customModule="BookManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hxA-x9-cZl">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbC-XF-4ES">
-                                <rect key="frame" x="30" y="176" width="333" height="500"/>
+                                <rect key="frame" x="30" y="276" width="333" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqi-zn-FR4">
+                                        <rect key="frame" x="46.666666666666686" y="20" width="240" height="128"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="SoA-Ow-jbX"/>
+                                            <constraint firstAttribute="height" constant="128" id="sVk-Qx-2b7"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEg-JZ-Oms">
+                                        <rect key="frame" x="85" y="178" width="163" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="カメラを起動する"/>
+                                        <connections>
+                                            <action selector="pressedCameraBootOrEndButton:" destination="KFT-ii-iLX" eventType="touchUpInside" id="THn-ht-pUU"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-Ax-jaO">
+                                        <rect key="frame" x="148" y="131.66666666666669" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slE-T2-9sR">
+                                        <rect key="frame" x="5" y="253" width="156.66666666666666" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="借りる"/>
+                                        <connections>
+                                            <action selector="pressedBorrowButton:" destination="KFT-ii-iLX" eventType="touchUpInside" id="usH-hb-hCI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-vl-zNV">
+                                        <rect key="frame" x="171.66666666666663" y="253" width="156.33333333333337" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="返却"/>
+                                        <connections>
+                                            <action selector="pressedReturnButton:" destination="KFT-ii-iLX" eventType="touchUpInside" id="oDG-VU-iXG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="sW6-HC-jer"/>
+                                    <constraint firstItem="JgJ-vl-zNV" firstAttribute="leading" secondItem="slE-T2-9sR" secondAttribute="trailing" constant="10" id="FTa-zn-s3s"/>
+                                    <constraint firstItem="vUa-Ax-jaO" firstAttribute="centerX" secondItem="kbC-XF-4ES" secondAttribute="centerX" id="HGQ-B4-v1i"/>
+                                    <constraint firstItem="JgJ-vl-zNV" firstAttribute="width" secondItem="slE-T2-9sR" secondAttribute="width" id="HmY-UT-nvO"/>
+                                    <constraint firstItem="oqi-zn-FR4" firstAttribute="centerX" secondItem="kbC-XF-4ES" secondAttribute="centerX" id="IXu-ZF-0zo"/>
+                                    <constraint firstAttribute="trailing" secondItem="JgJ-vl-zNV" secondAttribute="trailing" constant="5" id="K0I-fY-Boo"/>
+                                    <constraint firstItem="jEg-JZ-Oms" firstAttribute="centerX" secondItem="kbC-XF-4ES" secondAttribute="centerX" id="KyH-mR-5q2"/>
+                                    <constraint firstItem="vUa-Ax-jaO" firstAttribute="centerY" secondItem="kbC-XF-4ES" secondAttribute="centerY" id="M1D-aZ-SSp"/>
+                                    <constraint firstItem="JgJ-vl-zNV" firstAttribute="height" secondItem="slE-T2-9sR" secondAttribute="height" id="MUC-Nx-fiD"/>
+                                    <constraint firstItem="oqi-zn-FR4" firstAttribute="top" secondItem="kbC-XF-4ES" secondAttribute="top" constant="20" id="Y25-ww-bEm"/>
+                                    <constraint firstItem="JgJ-vl-zNV" firstAttribute="centerY" secondItem="slE-T2-9sR" secondAttribute="centerY" id="b99-zw-mbY"/>
+                                    <constraint firstItem="slE-T2-9sR" firstAttribute="top" secondItem="jEg-JZ-Oms" secondAttribute="bottom" constant="40" id="lCv-eE-8gA"/>
+                                    <constraint firstItem="slE-T2-9sR" firstAttribute="leading" secondItem="kbC-XF-4ES" secondAttribute="leading" constant="5" id="qpS-f1-A9o"/>
+                                    <constraint firstItem="jEg-JZ-Oms" firstAttribute="top" secondItem="oqi-zn-FR4" secondAttribute="bottom" constant="30" id="sVP-ru-Kd4"/>
+                                    <constraint firstAttribute="height" constant="300" id="sW6-HC-jer"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -468,10 +519,18 @@
                             <constraint firstItem="UIE-6P-Bo1" firstAttribute="trailing" secondItem="kbC-XF-4ES" secondAttribute="trailing" constant="30" id="N4S-7t-eW8"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="借りる/返却" image="arrow.up.right.and.arrow.down.left.rectangle" catalog="system" id="bF6-8e-sNZ"/>
+                    <connections>
+                        <outlet property="borrowButton" destination="slE-T2-9sR" id="dIP-Ax-C17"/>
+                        <outlet property="cameraBootOrEndButton" destination="jEg-JZ-Oms" id="erf-UP-YFR"/>
+                        <outlet property="readByISBNBarcodeView" destination="oqi-zn-FR4" id="KXD-JD-sfc"/>
+                        <outlet property="returnButton" destination="JgJ-vl-zNV" id="Xyf-Rs-dru"/>
+                        <outlet property="stateChangeProcess" destination="vUa-Ax-jaO" id="nov-Xo-H4F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FP8-mR-P3G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80" y="773"/>
+            <point key="canvasLocation" x="90.839694656488547" y="772.53521126760563"/>
         </scene>
         <!--借りている本-->
         <scene sceneID="8b4-tJ-Fvk">
@@ -566,7 +625,7 @@
                             <constraint firstItem="dfT-1e-Q96" firstAttribute="trailing" secondItem="JTL-q8-oEK" secondAttribute="trailing" id="umW-fu-PnO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="借りている本" image="person" catalog="system" id="qX8-PQ-rRh"/>
+                    <tabBarItem key="tabBarItem" title="借りている本" image="person.crop.circle" catalog="system" id="qX8-PQ-rRh"/>
                     <connections>
                         <outlet property="borrowedBookView" destination="dfT-1e-Q96" id="FOl-Dl-x1D"/>
                         <outlet property="inFetchActivityIndicator" destination="YX1-rx-Y4Z" id="bdb-dc-VBD"/>
@@ -579,9 +638,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.right.and.arrow.down.left.rectangle" catalog="system" width="128" height="93"/>
         <image name="doc.badge.plus" catalog="system" width="116" height="128"/>
         <image name="doc.on.doc" catalog="system" width="116" height="128"/>
-        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
