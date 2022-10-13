@@ -39,12 +39,17 @@
                                             <action selector="pressedLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="chc-Vz-wVr"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="slV-9Y-Kcr">
+                                        <rect key="frame" x="148" y="81.666666666666686" width="37" height="37"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="eNR-XQ-gGI" secondAttribute="trailing" constant="5" id="3f1-02-exB"/>
                                     <constraint firstAttribute="trailing" secondItem="Lqs-Tr-0KO" secondAttribute="trailing" constant="5" id="4mT-CZ-Yxp"/>
                                     <constraint firstItem="Lqs-Tr-0KO" firstAttribute="leading" secondItem="3lo-c9-rBu" secondAttribute="leading" constant="5" id="Ene-DT-NId"/>
+                                    <constraint firstItem="slV-9Y-Kcr" firstAttribute="centerX" secondItem="3lo-c9-rBu" secondAttribute="centerX" id="GT8-HX-adh"/>
+                                    <constraint firstItem="slV-9Y-Kcr" firstAttribute="centerY" secondItem="3lo-c9-rBu" secondAttribute="centerY" id="HmY-Z3-kal"/>
                                     <constraint firstItem="eNR-XQ-gGI" firstAttribute="top" secondItem="sYc-RA-Wp4" secondAttribute="bottom" constant="10" id="f5E-wj-PvL"/>
                                     <constraint firstItem="sYc-RA-Wp4" firstAttribute="top" secondItem="3lo-c9-rBu" secondAttribute="top" constant="5" id="jqR-9L-kn4"/>
                                     <constraint firstItem="eNR-XQ-gGI" firstAttribute="leading" secondItem="3lo-c9-rBu" secondAttribute="leading" constant="5" id="peB-Bz-18C"/>
@@ -64,6 +69,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginActivityIndicator" destination="slV-9Y-Kcr" id="DpN-yU-hch"/>
                         <outlet property="loginButton" destination="Lqs-Tr-0KO" id="4jV-Mg-oOw"/>
                         <outlet property="userSelectionPickerView" destination="eNR-XQ-gGI" id="wwn-aK-XW0"/>
                     </connections>

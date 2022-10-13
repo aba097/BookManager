@@ -13,6 +13,9 @@ class UserLoginViewController: UIViewController {
     
     @IBOutlet weak var userSelectionPickerView: UIPickerView!
     
+    @IBOutlet weak var loginActivityIndicator: UIActivityIndicatorView!
+    
+   
     private var presenter: UserLoginPresenterInput!
     func inject(presenter: UserLoginPresenterInput){
         self.presenter = presenter
@@ -22,8 +25,15 @@ class UserLoginViewController: UIViewController {
         super.viewDidLoad()
         
         self.loginButton.isEnabled = false
+        //クルクルがストップした時にクルクルを非表示にする
+        self.loginActivityIndicator.hidesWhenStopped = true
         
         self.presenter.viewDidLoad()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.loginActivityIndicator.stopAnimating()
     }
     
     @IBAction func pressedLoginButton(_ sender: Any) {
@@ -51,8 +61,6 @@ extension UserLoginViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         return self.presenter.userName(row: row)
     }
     
-    
-   
    // pickerview選択時
    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
        self.presenter.didSelectRow(row: row)
@@ -90,6 +98,9 @@ extension UserLoginViewController: UserLoginPresenterOutput{
     }
     
     func transitonToBookManagement(user: User) {
+        
+        self.loginActivityIndicator.startAnimating()
+        
         let bookTabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BookTabBar") as! UITabBarController
         bookTabVC.modalPresentationStyle = .fullScreen
         //(bookTabVC.viewControllers![1] as! BookRegisterViewController).test = "hoge"
