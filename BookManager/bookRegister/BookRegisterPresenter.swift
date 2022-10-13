@@ -13,6 +13,8 @@ protocol BookRegisterPresenterInput {
     func pressedISBNSearchButton(inputISBNCode: String)
     func scanISBNCode(avMetadataObjects: [AVMetadataObject])
     func pressedPhotoUploadButton()
+    func pressedCameraBootOrEndButton(buttonIsSelected: Bool)
+    func viewDidDisappear()
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
@@ -22,6 +24,8 @@ protocol BookRegisterPresenterOutput: AnyObject {
     func showPhotoUploadAlert()
     func setFetchBookInfo(title: String, author: String, publisher: String, image: Data?)
     func showErrorFetchBookInfo(errorMessage: String)
+    func captureStart()
+    func captureStop()
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
@@ -34,6 +38,11 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
         self.model = model
         self.model.delegate = self
     }
+    
+    func viewDidDisappear() {
+        self.view.captureStop()
+    }
+    
     
     func pressedBookRegisterButton(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
         if inputTitle == "" {
@@ -74,6 +83,15 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     
     func pressedPhotoUploadButton() {
         self.view.showPhotoUploadAlert()
+    }
+    
+    func pressedCameraBootOrEndButton(buttonIsSelected: Bool) {
+        //MARK: IsSelectedは初期値がfalseなので注意
+        if buttonIsSelected {
+            self.view.captureStop()
+        }else {
+            self.view.captureStart()
+        }
     }
     
 }

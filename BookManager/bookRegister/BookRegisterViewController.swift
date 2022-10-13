@@ -19,6 +19,8 @@ class BookRegisterViewController: UIViewController {
     
     @IBOutlet weak var readByISBNBarcodeView: UIView!
     
+    @IBOutlet weak var cameraBootOrEndButton: UIButton!
+    
     @IBOutlet weak var bookRegisterButton: UIButton!
     
     private var imagepicker: UIImagePickerController = UIImagePickerController() //フォトライブラリ操作
@@ -39,18 +41,24 @@ class BookRegisterViewController: UIViewController {
        //uploadedPhotoImageView.image = UIImage(named: "noimage")
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        presenter.viewDidDisappear()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //TextField以外をタッチしたときにキーボードを閉じる
         self.view.endEditing(true)
     }
     
     func setupDelegate(){
-        inputTitleTextField.delegate = self
-        inputAuthorTextField.delegate = self
-        inputPublisherTextField.delegate = self
-        inputISBNCodeTextField.delegate = self
+        self.inputTitleTextField.delegate = self
+        self.inputAuthorTextField.delegate = self
+        self.inputPublisherTextField.delegate = self
+        self.inputISBNCodeTextField.delegate = self
         
-        imagepicker.delegate = self
+        self.imagepicker.delegate = self
         
     }
     
@@ -87,31 +95,17 @@ class BookRegisterViewController: UIViewController {
     }
     
     @IBAction func pressedISBNSearchButton(_ sender: Any) {
-        self.presenter.pressedISBNSearchButton(inputISBNCode: inputISBNCodeTextField.text!)
+        self.presenter.pressedISBNSearchButton(inputISBNCode: self.inputISBNCodeTextField.text!)
     }
     
     
     @IBAction func pressedCameraBootOrEndButton(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        
-        if sender.isSelected {
-            self.readByISBNBarcodeView.isHidden = false
-            if !self.captureSession.isRunning {
-                self.captureSessionQueue.async {
-                    self.captureSession.startRunning()
-                }
-            }
-        }else{
-            self.readByISBNBarcodeView.isHidden = true
-            if self.captureSession.isRunning {
-                self.captureSession.stopRunning()
-            }
-        }
+        presenter.pressedCameraBootOrEndButton(buttonIsSelected: self.cameraBootOrEndButton.isSelected)
     }
     
     @IBAction func pressedBookRegisterButton(_ sender: Any) {
         self.bookRegisterButton.isEnabled = false
-        self.presenter.pressedBookRegisterButton(inputTitle: inputTitleTextField.text!, inputAuthor: inputAuthorTextField.text!, inputPublisher: inputPublisherTextField.text!, inputImage: uploadedPhotoImageView.image?.jpegData(compressionQuality: 0.5))
+        self.presenter.pressedBookRegisterButton(inputTitle: self.inputTitleTextField.text!, inputAuthor: self.inputAuthorTextField.text!, inputPublisher: self.inputPublisherTextField.text!, inputImage: self.uploadedPhotoImageView.image?.jpegData(compressionQuality: 0.5))
     }
 }
 
@@ -226,5 +220,20 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
             present(alert, animated: true, completion: nil)
         }
     }
+    
+    func captureStart() {
+        self.cameraBootOrEndButton.isSelected = !self.cameraBootOrEndButton.isSelected
+        self.readByISBNBarcodeView.isHidden = false
+        self.captureSessionQueue.async {
+            self.captureSession.startRunning()
+        }
+    }
+    
+    func captureStop() {
+        self.cameraBootOrEndButton.isSelected = !self.cameraBootOrEndButton.isSelected
+        self.readByISBNBarcodeView.isHidden = true
+        self.captureSession.stopRunning()
+    }
+  
     
 }
