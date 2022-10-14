@@ -103,16 +103,15 @@ extension UserLoginViewController: UserLoginPresenterOutput{
         
         let bookTabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BookTabBar") as! UITabBarController
         bookTabVC.modalPresentationStyle = .fullScreen
-        //(bookTabVC.viewControllers![1] as! BookRegisterViewController).test = "hoge"
         
         //本登録画面
-        let bookRegisterViewController = bookTabVC.viewControllers![2] as! BookRegisterViewController
+        let bookRegisterViewController = bookTabVC.viewControllers![3] as! BookRegisterViewController
         let bookRegisterModel = BookRegisterModel()
         let bookRegisterPresenter = BookRegisterPresenter(view: bookRegisterViewController, model: bookRegisterModel)
         bookRegisterViewController.inject(presenter: bookRegisterPresenter)
         
         //借りている本一覧画面
-        let borrowedBookViewController = bookTabVC.viewControllers![1] as! BorrowedBookViewController
+        let borrowedBookViewController = bookTabVC.viewControllers![2] as! BorrowedBookViewController
         let borrowedBookModel = BorrowedBookModel()
         let borrowedBookPresenter = BorrowedBookPresenter(view: borrowedBookViewController, model: borrowedBookModel, user: user)
         borrowedBookViewController.inject(presenter: borrowedBookPresenter)
