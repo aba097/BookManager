@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+protocol BorrowReturnModelInput {
+    
+}
+
+class BorrowReturnModel: BorrowReturnModelInput {
+    
+}

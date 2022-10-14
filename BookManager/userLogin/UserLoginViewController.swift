@@ -116,6 +116,12 @@ extension UserLoginViewController: UserLoginPresenterOutput{
         let borrowedBookPresenter = BorrowedBookPresenter(view: borrowedBookViewController, model: borrowedBookModel, user: user)
         borrowedBookViewController.inject(presenter: borrowedBookPresenter)
         
+        //借りる返却画面
+        let borrowReturnViewController = bookTabVC.viewControllers![1] as! BorrowReturnViewController
+        let borrowReturnModel = BorrowReturnModel()
+        let borrowReturnPresenter = BorrowReturnPresenter(view: borrowReturnViewController, model: borrowReturnModel, user: user)
+        borrowReturnViewController.inject(presenter: borrowReturnPresenter)
+        
         //本一覧画面
         let bookManagementViewController = bookTabVC.viewControllers![0] as! BookManagementViewController
         let bookManagementModel = BookManagementModel()

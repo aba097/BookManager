@@ -13,17 +13,20 @@ class BorrowReturnViewController: UIViewController {
     
     @IBOutlet weak var stateChangeProcess: UIActivityIndicatorView!
     
-    
     @IBOutlet weak var cameraBootOrEndButton: UIButton!
     
     @IBOutlet weak var borrowButton: UIButton!
     
     @IBOutlet weak var returnButton: UIButton!
     
+    private var presenter: BorrowReturnPresenterInput!
+    func inject(presenter: BorrowReturnPresenterInput) {
+        self.presenter = presenter
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        presenter.hoge()
     }
     
     @IBAction func pressedCameraBootOrEndButton(_ sender: Any) {
@@ -33,6 +36,13 @@ class BorrowReturnViewController: UIViewController {
     }
     
     @IBAction func pressedReturnButton(_ sender: Any) {
+    }
+    
+}
+
+extension BorrowReturnViewController: BorrowReturnPresenterOutput {
+    func hoge() {
+        
     }
     
 }
