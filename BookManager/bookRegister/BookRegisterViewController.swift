@@ -37,8 +37,12 @@ class BookRegisterViewController: UIViewController {
         setupDelegate()
         
         setupBarcodeCapture()
-        
        //uploadedPhotoImageView.image = UIImage(named: "noimage")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.presenter.viewWillAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -150,6 +154,15 @@ extension BookRegisterViewController: UIImagePickerControllerDelegate, UINavigat
 
 //MARK: - Extension BookRegisterPresenterOutput -
 extension BookRegisterViewController: BookRegisterPresenterOutput {
+    
+    func setDefaultValue() {
+        self.inputTitleTextField.text = ""
+        self.inputAuthorTextField.text = ""
+        self.inputPublisherTextField.text = ""
+        self.inputISBNCodeTextField.text = ""
+        self.uploadedPhotoImageView.image = nil
+        self.bookRegisterButton.isEnabled = true
+    }
     
     func showSuccessPostBookInfo(message: String) {
         let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)

@@ -15,6 +15,8 @@ protocol BookRegisterPresenterInput {
     func pressedPhotoUploadButton()
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool)
     func viewDidDisappear()
+    func viewWillAppear()
+
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
@@ -26,6 +28,7 @@ protocol BookRegisterPresenterOutput: AnyObject {
     func showErrorFetchBookInfo(errorMessage: String)
     func captureStart()
     func captureStop()
+    func setDefaultValue()
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
@@ -39,8 +42,12 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
         self.model.delegate = self
     }
     
+    func viewWillAppear() {
+        self.view.setDefaultValue()
+    }
     func viewDidDisappear() {
         self.view.captureStop()
+        self.view.setDefaultValue()
     }
     
     
