@@ -16,7 +16,7 @@ protocol BookRegisterPresenterInput {
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool)
     func viewDidDisappear()
     func viewWillAppear()
-
+    func viewDidLoad(viewBounds: CGRect)
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
@@ -29,6 +29,7 @@ protocol BookRegisterPresenterOutput: AnyObject {
     func captureStart()
     func captureStop()
     func setDefaultValue()
+    func setupBarcodeCapture(output: inout AVCaptureMetadataOutput, capturePreviewLayer: inout AVCaptureVideoPreviewLayer)
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
@@ -36,18 +37,69 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     private weak var view: BookRegisterPresenterOutput!
     private var model: BookRegisterModelInput
     
+    private(set) var captureSession: AVCaptureSession?
+    var captureSessionQueue: DispatchQueue?
+    var videoLayer : AVCaptureVideoPreviewLayer?
+    
     init(view: BookRegisterPresenterOutput, model: BookRegisterModelInput) {
         self.view = view
         self.model = model
         self.model.delegate = self
     }
     
+    func viewDidLoad(viewBounds: CGRect) {
+        self.setupBarcodeCapture(viewBounds: viewBounds)
+    }
+    
     func viewWillAppear() {
         self.view.setDefaultValue()
     }
+    
     func viewDidDisappear() {
-        self.view.captureStop()
+        self.captureStop()
         self.view.setDefaultValue()
+    }
+    
+    func setupBarcodeCapture(viewBounds: CGRect){
+        //画像や動画といった出力データの管理を行うクラス
+        let session = AVCaptureSession()
+        self.captureSessionQueue = DispatchQueue(label: "captureSessionQueue")
+        
+        //カメラデバイスの管理を行うクラス
+        let device : AVCaptureDevice = AVCaptureDevice.default(for: .video)!
+        //AVCaptureDeviceをAVCaptureSessionに渡すためのクラス
+        guard let input : AVCaptureInput = try? AVCaptureDeviceInput(device: device) else {
+            return
+        }
+        //inputをセッションに追加
+        session.addInput(input)
+        //outputをセッションに追加
+        var output = AVCaptureMetadataOutput()
+        session.addOutput(output)
+        output.metadataObjectTypes = [.ean8, .ean13]
+        
+        //画面上にカメラの映像を表示するためにvideoLayerを作る
+        var videoLayer = AVCaptureVideoPreviewLayer(session: session)
+        //アスペクト比を保ったままレイヤー矩形いっぱいに表示する。
+        videoLayer.videoGravity = .resizeAspectFill
+        videoLayer.frame = viewBounds
+        
+        self.view.setupBarcodeCapture(output: &output, capturePreviewLayer: &videoLayer)
+        
+        self.videoLayer = videoLayer
+        self.captureSession = session
+    }
+    
+    func captureStart(){
+        self.captureSessionQueue?.async {
+            self.captureSession?.startRunning()
+         }
+         self.view.captureStart()
+    }
+    
+    func captureStop(){
+        self.captureSession?.stopRunning()
+        self.view.captureStop()
     }
     
     
@@ -69,9 +121,11 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
         
         for metadataObject in objects {
             if metadataObject.type == AVMetadataObject.ObjectType.ean8 ||  metadataObject.type == AVMetadataObject.ObjectType.ean13 {
-//                guard self.capturePreviewLayer.transformedMetadataObject(for: metadataObject) is AVMetadataMachineReadableCodeObject else { continue }
+                guard self.videoLayer!.transformedMetadataObject(for: metadataObject) is AVMetadataMachineReadableCodeObject else { continue }
                     if let object = metadataObject as? AVMetadataMachineReadableCodeObject {
-                    fetchBookInfo(inputISBNCode: object.stringValue!)
+                        print(object.stringValue!)
+                        self.captureStop()
+                        fetchBookInfo(inputISBNCode: object.stringValue!)
                 }
             }
         }
@@ -82,8 +136,14 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
             do {
                 let book: Book = try await self.model.fetchBookInfo(ISBNCode: inputISBNCode)
                 self.view.setFetchBookInfo(title: book.title, author: book.author, publisher: book.publisher, image: book.image)
+                DispatchQueue.main.sync {
+                    self.captureStart()
+                }
             }catch {
-                self.view.showErrorFetchBookInfo(errorMessage: error.localizedDescription)
+                DispatchQueue.main.sync {
+                    self.view.showErrorFetchBookInfo(errorMessage: error.localizedDescription)
+                    self.captureStart()
+                }
             }
         }
     }
@@ -95,9 +155,9 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool) {
         //MARK: IsSelectedは初期値がfalseなので注意
         if !buttonIsSelected {
-            self.view.captureStart()
+            self.captureStart()
         }else {
-            self.view.captureStop()
+            self.captureStop()
         }
     }
     

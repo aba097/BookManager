@@ -24,8 +24,6 @@ class BookRegisterViewController: UIViewController {
     @IBOutlet weak var bookRegisterButton: UIButton!
     
     private var imagepicker: UIImagePickerController = UIImagePickerController() //フォトライブラリ操作
-    private lazy var captureSession: AVCaptureSession = AVCaptureSession()
-    private let captureSessionQueue = DispatchQueue(label: "captureSessionQueue")
     
     private var presenter: BookRegisterPresenterInput!
     func inject(presenter: BookRegisterPresenterInput) {
@@ -36,7 +34,7 @@ class BookRegisterViewController: UIViewController {
         super.viewDidLoad()
         setupDelegate()
         
-        setupBarcodeCapture()
+        presenter.viewDidLoad(viewBounds: self.readByISBNBarcodeView!.bounds)
        //uploadedPhotoImageView.image = UIImage(named: "noimage")
     }
     
@@ -66,34 +64,6 @@ class BookRegisterViewController: UIViewController {
         
     }
     
-    func setupBarcodeCapture(){
-        lazy var captureDevice: AVCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)!
-            
-        var captureInput: AVCaptureInput? = nil
-        lazy var Output: AVCaptureMetadataOutput = {
-            let output = AVCaptureMetadataOutput()
-            output.setMetadataObjectsDelegate(self, queue: .main)
-            return output
-        }()
-        lazy var capturePreviewLayer: AVCaptureVideoPreviewLayer = {
-            let layer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-            return layer
-        }()
-        
-        do {
-            captureInput = try AVCaptureDeviceInput(device: captureDevice)
-            self.captureSession.addInput(captureInput!)
-            self.captureSession.addOutput(Output)
-            Output.metadataObjectTypes = Output.availableMetadataObjectTypes
-            capturePreviewLayer.frame = self.readByISBNBarcodeView?.bounds ?? CGRect.zero
-            capturePreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-           // capturePreviewLayer.connection?.videoOrientation = .landscapeRight
-            self.readByISBNBarcodeView?.layer.addSublayer(capturePreviewLayer)
-        }catch {
-            self.captureSession.commitConfiguration()
-        }
-    }
-  
     @IBAction func pressedPhotoUploadButton(_ sender: Any) {
         self.presenter.pressedPhotoUploadButton()
     }
@@ -125,9 +95,10 @@ extension BookRegisterViewController: UITextFieldDelegate {
 
 //MARK: - AVCaptureMetadataOutputObjects -
 extension BookRegisterViewController: AVCaptureMetadataOutputObjectsDelegate {
+    
     //バーコード読み取り
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-
+    
         self.presenter.scanISBNCode(avMetadataObjects: metadataObjects)
 
     }
@@ -154,7 +125,7 @@ extension BookRegisterViewController: UIImagePickerControllerDelegate, UINavigat
 
 //MARK: - Extension BookRegisterPresenterOutput -
 extension BookRegisterViewController: BookRegisterPresenterOutput {
-    
+
     func setDefaultValue() {
         self.inputTitleTextField.text = ""
         self.inputAuthorTextField.text = ""
@@ -212,7 +183,7 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         //alert表示
         present(alert, animated: true, completion: nil)
     }
-
+    
     func setFetchBookInfo(title: String, author: String, publisher: String, image: Data?) {
         DispatchQueue.main.sync {
             self.inputTitleTextField.text = title
@@ -229,23 +200,24 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
-        DispatchQueue.main.sync {
-            present(alert, animated: true, completion: nil)
-        }
+
+        present(alert, animated: true, completion: nil)
+        
     }
     
     func captureStart() {
         self.cameraBootOrEndButton.isSelected = true
         self.readByISBNBarcodeView.isHidden = false
-        self.captureSessionQueue.async {
-            self.captureSession.startRunning()
-        }
     }
     
     func captureStop() {
         self.cameraBootOrEndButton.isSelected = false
         self.readByISBNBarcodeView.isHidden = true
-        self.captureSession.stopRunning()
+    }
+    
+    func setupBarcodeCapture(output: inout AVCaptureMetadataOutput, capturePreviewLayer: inout AVCaptureVideoPreviewLayer) {
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        self.readByISBNBarcodeView?.layer.addSublayer(capturePreviewLayer)
     }
   
     
