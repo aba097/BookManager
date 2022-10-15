@@ -34,12 +34,12 @@ protocol BookRegisterPresenterOutput: AnyObject {
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
 
-    private weak var view: BookRegisterPresenterOutput!
-    private var model: BookRegisterModelInput
+    private(set) weak var view: BookRegisterPresenterOutput!
+    private(set) var model: BookRegisterModelInput
     
     private(set) var captureSession: AVCaptureSession?
-    var captureSessionQueue: DispatchQueue?
-    var videoLayer : AVCaptureVideoPreviewLayer?
+    private(set) var captureSessionQueue: DispatchQueue?
+    private(set) var videoLayer : AVCaptureVideoPreviewLayer?
     
     init(view: BookRegisterPresenterOutput, model: BookRegisterModelInput) {
         self.view = view
