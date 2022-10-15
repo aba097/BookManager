@@ -77,38 +77,37 @@ extension BorrowedBookViewController: UITableViewDelegate, UITableViewDataSource
 //MARK: - BorrowedBookPresenterOutput -
 extension BorrowedBookViewController: BorrowedBookPresenterOutput {
   
-    
-    func updateBooks() {
-        DispatchQueue.main.sync {
-            self.showBorrowedBookListTableView.reloadData()
-        }
-    }
-    
-    func showInFetchActivityIndicatorAndHideBookManageView() {
+    func startFetchBooks() {
         self.inFetchActivityIndicator.startAnimating()
         self.borrowedBookView.isHidden = true
     }
     
-    func hideInFetchActivityIndicatorAndShowBookManageView() {
+    func finishedFetchBooks() {
         DispatchQueue.main.sync {
             self.inFetchActivityIndicator.stopAnimating()
             self.borrowedBookView.isHidden = false
         }
     }
     
-    func showErrorFetchBooks(errorMessage: String) {
-        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
-         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-         alert.addAction(okAction)
-         DispatchQueue.main.sync {
-             present(alert, animated: true, completion: nil)
-         }
+    func updateBooks() {
+        DispatchQueue.main.sync {
+            self.showBorrowedBookListTableView.reloadData()
+        }
+    }
+
+    
+    func showMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okAction)
+        DispatchQueue.main.sync {
+            present(alert, animated: true, completion: nil)
+        }
     }
     
-    func changedStateSuccess(message: String) {
-        let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)
+    func changedStateSuccess(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-            
             self.presenter.reloadBooks()
         })
                         
@@ -117,13 +116,5 @@ extension BorrowedBookViewController: BorrowedBookPresenterOutput {
             present(alert, animated: true, completion: nil)
         }
     }
-    
-    func changedStateError(message: String) {
-        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(okAction)
-        DispatchQueue.main.sync {
-            present(alert, animated: true, completion: nil)
-        }
-    }
+
 }

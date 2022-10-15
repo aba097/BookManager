@@ -16,20 +16,19 @@ protocol BorrowedBookPresenterInput {
 }
 
 protocol BorrowedBookPresenterOutput: AnyObject {
-    func showInFetchActivityIndicatorAndHideBookManageView()
-    func hideInFetchActivityIndicatorAndShowBookManageView()
-    func changedStateSuccess(message: String)
-    func changedStateError(message: String)
-    func showErrorFetchBooks(errorMessage: String)
+    func startFetchBooks()
     func updateBooks()
+    func finishedFetchBooks()
+    func showMessage(title: String, message: String)
+    func changedStateSuccess(title: String, message: String)
 }
 
 final class BorrowedBookPresenter: BorrowedBookPresenterInput {
     
-    private weak var view: BorrowedBookPresenterOutput!
-    private var model: BorrowedBookModelInput
+    private(set) weak var view: BorrowedBookPresenterOutput!
+    private(set) var model: BorrowedBookModelInput
     
-    private var user: User
+    private(set) var user: User
     private(set) var books: [Book] = []
     private(set) var borrowedBooks: [Book] = []
     
@@ -57,24 +56,28 @@ final class BorrowedBookPresenter: BorrowedBookPresenterInput {
     }
     
     func fetchBooks() {
-        self.view.showInFetchActivityIndicatorAndHideBookManageView()
+        self.startFetchBooks()
         
         Task.detached {
             do {
                 self.books = try await self.model.fetchBooks()
-   
-                //TODO: 自分の借りている本のみ読み出す
                 self.borrowedBooks = self.model.filteredBorrowedBooks(books: self.books, userName: self.user.name)
                 
                 self.view.updateBooks()
-                
-                self.view.hideInFetchActivityIndicatorAndShowBookManageView()
+                self.finishedFetchBooks()
                 
             }catch {
-                self.view.showErrorFetchBooks(errorMessage: error.localizedDescription)
-                //self.view.hideInFetchActivityIndicatorAndShowBookManageView()
+                self.view.showMessage(title: "error", message: error.localizedDescription)
             }
         }
+    }
+    
+    func startFetchBooks(){
+        self.view.startFetchBooks()
+    }
+    
+    func finishedFetchBooks(){
+        self.view.finishedFetchBooks()
     }
     
     func pressedBookReturn(row: Int) {
@@ -83,13 +86,12 @@ final class BorrowedBookPresenter: BorrowedBookPresenterInput {
                 let updateState = try await self.model.returnBook(book: self.borrowedBooks[row])
                 switch updateState {
                 case .success:
-                    self.view.changedStateSuccess(message: updateState.rawValue)
+                    self.view.changedStateSuccess(title: "success", message: updateState.rawValue)
                 case .nomatch:
-                    self.view.changedStateError(message: updateState.rawValue)
+                    self.view.showMessage(title: "error", message: updateState.rawValue)
                 }
-                
             }catch {
-                self.view.changedStateError(message: error.localizedDescription)
+                self.view.showMessage(title: "error", message: error.localizedDescription)
             }
         }
     }
