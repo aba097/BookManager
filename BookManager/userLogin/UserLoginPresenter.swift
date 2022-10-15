@@ -27,8 +27,8 @@ final class UserLoginPresenter: UserLoginPresenterInput {
     private(set) var users: [User] = []
     private(set) var user: User?
     
-    private weak var view: UserLoginPresenterOutput!
-    private var model: UserLoginModelInput
+    private(set) weak var view: UserLoginPresenterOutput!
+    private(set) var model: UserLoginModelInput
     
     init(view: UserLoginPresenterOutput, model: UserLoginModelInput) {
         self.view = view
