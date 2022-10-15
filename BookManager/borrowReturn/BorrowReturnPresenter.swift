@@ -18,6 +18,7 @@ protocol BorrowReturnPresenterInput {
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool)
     func pressedBorrowButton()
     func pressedReturnButton()
+    func viewDidLoad(viewBounds: CGRect)
     func viewDidDisappear()
     func scanISBNCode(avMetadataObjects: [AVMetadataObject])
 }
@@ -27,20 +28,25 @@ protocol BorrowReturnPresenterOutput: AnyObject {
     func captureStop()
     func stateSelectedBorrowButton()
     func stateSelectedReturnButton()
-    func showMessage(title: String, message: String)
     func startActivityIndicator()
     func stopActivityIndicator()
+    func showMessage(title: String, message: String)
+    func setupBarcodeCapture(output: inout AVCaptureMetadataOutput, capturePreviewLayer: inout AVCaptureVideoPreviewLayer)
 }
 
 final class BorrowReturnPresenter: BorrowReturnPresenterInput {
     
-    private weak var view: BorrowReturnPresenterOutput!
-    private var model: BorrowReturnModelInput
-    private var user: User
+    private(set) weak var view: BorrowReturnPresenterOutput!
+    private(set) var model: BorrowReturnModelInput
+    private(set) var user: User
 
     private(set) var buttonState: BorrowReturnState?
     
     private(set) var isStateChange = false
+    
+    private(set) var captureSession: AVCaptureSession?
+    private(set) var captureSessionQueue: DispatchQueue?
+    private(set) var videoLayer : AVCaptureVideoPreviewLayer?
     
     init(view: BorrowReturnPresenterOutput, model: BorrowReturnModelInput, user: User) {
         self.view = view
@@ -48,22 +54,70 @@ final class BorrowReturnPresenter: BorrowReturnPresenterInput {
         self.user = user
     }
     
+    func viewDidLoad(viewBounds: CGRect) {
+        self.setupBarcodeCapture(viewBounds: viewBounds)
+    }
+    
     func viewWillAppear() {
         self.buttonState = BorrowReturnState.borrowState
         self.view.stateSelectedBorrowButton()
-        self.view.captureStart()
+        self.captureStart()
     }
     
     func viewDidDisappear() {
+        self.captureStop()
+    }
+    
+    func setupBarcodeCapture(viewBounds: CGRect){
+        //画像や動画といった出力データの管理を行うクラス
+        let session = AVCaptureSession()
+        self.captureSessionQueue = DispatchQueue(label: "captureSessionQueue")
+        
+        //カメラデバイスの管理を行うクラス
+        let device : AVCaptureDevice = AVCaptureDevice.default(for: .video)!
+        //AVCaptureDeviceをAVCaptureSessionに渡すためのクラス
+        guard let input : AVCaptureInput = try? AVCaptureDeviceInput(device: device) else {
+            return
+        }
+        //inputをセッションに追加
+        session.addInput(input)
+        //outputをセッションに追加
+        var output = AVCaptureMetadataOutput()
+        session.addOutput(output)
+        output.metadataObjectTypes = [.ean8, .ean13]
+        
+        //画面上にカメラの映像を表示するためにvideoLayerを作る
+        var videoLayer = AVCaptureVideoPreviewLayer(session: session)
+        //アスペクト比を保ったままレイヤー矩形いっぱいに表示する。
+        videoLayer.videoGravity = .resizeAspectFill
+        videoLayer.frame = viewBounds
+        
+        self.view.setupBarcodeCapture(output: &output, capturePreviewLayer: &videoLayer)
+        
+        self.videoLayer = videoLayer
+        self.captureSession = session
+    }
+    
+    func captureStart(){
+        self.captureSessionQueue?.async {
+            self.captureSession?.startRunning()
+         }
+         self.view.captureStart()
+    }
+    
+    func captureStop(){
+        self.captureSession?.stopRunning()
         self.view.captureStop()
     }
+    
+    
     
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool) {
         //MARK: IsSelectedは初期値がfalseなので注意
         if !buttonIsSelected {
-            self.view.captureStart()
+            self.captureStart()
         }else {
-            self.view.captureStop()
+            self.captureStop()
         }
     }
     
@@ -83,7 +137,7 @@ final class BorrowReturnPresenter: BorrowReturnPresenterInput {
         
         for metadataObject in objects {
             if metadataObject.type == AVMetadataObject.ObjectType.ean8 ||  metadataObject.type == AVMetadataObject.ObjectType.ean13 {
-//                guard self.capturePreviewLayer.transformedMetadataObject(for: metadataObject) is AVMetadataMachineReadableCodeObject else { continue }
+                guard self.videoLayer!.transformedMetadataObject(for: metadataObject) is AVMetadataMachineReadableCodeObject else { continue }
                     if let object = metadataObject as? AVMetadataMachineReadableCodeObject {
                         fetchBook(inputISBNCode: object.stringValue!)
                 }
@@ -96,7 +150,7 @@ final class BorrowReturnPresenter: BorrowReturnPresenterInput {
         if !isStateChange {
             isStateChange = true
             self.view.startActivityIndicator()
-            self.view.captureStop()
+            self.captureStop()
             return true
         }
 
