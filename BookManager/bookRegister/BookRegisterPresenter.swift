@@ -17,6 +17,7 @@ protocol BookRegisterPresenterInput {
     func viewDidDisappear()
     func viewWillAppear()
     func viewDidLoad(viewBounds: CGRect)
+    func closedShowErrorFetchBookInfo(fromScanISBNCode: Bool)
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
@@ -25,7 +26,7 @@ protocol BookRegisterPresenterOutput: AnyObject {
     func showErrorNotInputTitle(errorMessage: String)
     func showPhotoUploadAlert()
     func setFetchBookInfo(title: String, author: String, publisher: String, image: Data?)
-    func showErrorFetchBookInfo(errorMessage: String)
+    func showErrorFetchBookInfo(errorMessage: String, fromScanISBNCode: Bool)
     func captureStart()
     func captureStop()
     func setDefaultValue()
@@ -33,7 +34,7 @@ protocol BookRegisterPresenterOutput: AnyObject {
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
-    
+
     private weak var view: BookRegisterPresenterOutput!
     private var model: BookRegisterModelInput
     
@@ -113,7 +114,7 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     }
     
     func pressedISBNSearchButton(inputISBNCode: String) {
-        fetchBookInfo(inputISBNCode: inputISBNCode)
+        fetchBookInfo(inputISBNCode: inputISBNCode, fromScanISBNCode: false)
     }
     
     func scanISBNCode(avMetadataObjects: [AVMetadataObject]) {
@@ -123,28 +124,34 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
             if metadataObject.type == AVMetadataObject.ObjectType.ean8 ||  metadataObject.type == AVMetadataObject.ObjectType.ean13 {
                 guard self.videoLayer!.transformedMetadataObject(for: metadataObject) is AVMetadataMachineReadableCodeObject else { continue }
                     if let object = metadataObject as? AVMetadataMachineReadableCodeObject {
-                        print(object.stringValue!)
                         self.captureStop()
-                        fetchBookInfo(inputISBNCode: object.stringValue!)
+                        fetchBookInfo(inputISBNCode: object.stringValue!, fromScanISBNCode: true)
                 }
             }
         }
     }
         
-    func fetchBookInfo(inputISBNCode: String){
+    func fetchBookInfo(inputISBNCode: String, fromScanISBNCode: Bool){
         Task.detached {
             do {
                 let book: Book = try await self.model.fetchBookInfo(ISBNCode: inputISBNCode)
                 self.view.setFetchBookInfo(title: book.title, author: book.author, publisher: book.publisher, image: book.image)
-                DispatchQueue.main.sync {
-                    self.captureStart()
+                if fromScanISBNCode {
+                    DispatchQueue.main.sync {
+                        self.captureStart()
+                    }
                 }
             }catch {
                 DispatchQueue.main.sync {
-                    self.view.showErrorFetchBookInfo(errorMessage: error.localizedDescription)
-                    self.captureStart()
+                    self.view.showErrorFetchBookInfo(errorMessage: error.localizedDescription, fromScanISBNCode: fromScanISBNCode)
                 }
             }
+        }
+    }
+    
+    func closedShowErrorFetchBookInfo(fromScanISBNCode: Bool) {
+        if fromScanISBNCode {
+            self.captureStart()
         }
     }
     

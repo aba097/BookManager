@@ -196,9 +196,13 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         }
     }
     
-    func showErrorFetchBookInfo(errorMessage: String) {
+    func showErrorFetchBookInfo(errorMessage: String, fromScanISBNCode: Bool) {
         let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+            
+            self.presenter.closedShowErrorFetchBookInfo(fromScanISBNCode: fromScanISBNCode)
+        })
+
         alert.addAction(okAction)
 
         present(alert, animated: true, completion: nil)
