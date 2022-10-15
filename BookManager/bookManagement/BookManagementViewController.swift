@@ -41,8 +41,6 @@ class BookManagementViewController: UIViewController {
         self.showBookListTableView.delegate = self
         self.showBookListTableView.dataSource = self
         self.showBookListTableView.allowsSelection = false //セルの選択を不可能にする
-
-        //showBookListTableView.register(_, forCellReuseIdentifier: "bookInfoCell")
     }
 
     @IBAction func borrowedBookSwitchAction(_ sender: UISwitch) {
@@ -108,21 +106,16 @@ extension BookManagementViewController: UISearchBarDelegate {
 
 //MARK: - BookManagementPresenterOutput -
 extension BookManagementViewController: BookManagementPresenterOutput {
-
-    func showInFetchActivityIndicatorAndHideBookManageView() {
+    
+    func startFetchBooks() {
         self.inFetchActivityIndicator.startAnimating()
         self.bookManageView.isHidden = true
     }
     
-    func hideInFetchActivityIndicatorAndShowBookManageView() {
+    func finishedFetchBooks() {
         DispatchQueue.main.sync {
             self.inFetchActivityIndicator.stopAnimating()
             self.bookManageView.isHidden = false
-        }
-    }
-    
-    func updateBooksFilteredSearchWord() {
-        DispatchQueue.main.sync {
             self.borrowedBookSwitch.isOn = false
             self.showBookListTableView.reloadData()
         }
@@ -132,33 +125,13 @@ extension BookManagementViewController: BookManagementPresenterOutput {
         self.showBookListTableView.reloadData()
     }
     
-    func showErrorFetchBooks(errorMessage: String) {
-        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
+    func showMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
         DispatchQueue.main.sync {
             present(alert, animated: true, completion: nil)
         }
     }
-    
-    func changedStateSuccess(message: String) {
-        let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(okAction)
-        DispatchQueue.main.sync {
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func changedStateError(message: String) {
-        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(okAction)
-        DispatchQueue.main.sync {
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    
     
 }

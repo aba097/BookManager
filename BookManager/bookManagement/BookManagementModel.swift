@@ -10,7 +10,7 @@ import Firebase
 
 enum UpdateState: String{
     case success = "Update completed"
-    case nomatch = "Book state is different"
+    case nomatch = "The book state is different"
 }
 protocol BookManagementModelInput {
     func fetchBooks()async throws -> [Book]

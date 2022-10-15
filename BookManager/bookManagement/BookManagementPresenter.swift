@@ -26,21 +26,19 @@ protocol BookManagementPresenterInput {
 }
 
 protocol BookManagementPresenterOutput: AnyObject {
-    func showInFetchActivityIndicatorAndHideBookManageView()
-    func hideInFetchActivityIndicatorAndShowBookManageView()
-    func showErrorFetchBooks(errorMessage: String)
-    func updateBooksFilteredSearchWord()
     func upadteBooksFilteredBorrowedBook()
-    func changedStateSuccess(message: String)
-    func changedStateError(message: String)
+    func showMessage(title: String, message: String)
+    func startFetchBooks()
+    func finishedFetchBooks()
+
 }
 
 final class BookManagementPresenter: BookManagementPresenterInput {
 
-    private weak var view: BookManagementPresenterOutput!
-    private var model: BookManagementModelInput
+    private(set) weak var view: BookManagementPresenterOutput!
+    private(set) var model: BookManagementModelInput
     
-    private var user: User
+    private(set) var user: User
     private(set) var books: [Book] = []
     private(set) var matchedBooks: [Book] = []
     private(set) var filteredInSearchWordBooks: [Book] = []
@@ -68,13 +66,13 @@ final class BookManagementPresenter: BookManagementPresenterInput {
         fetchBooks(searchText: searchText)
     }
     
-    
     func pressedReloadButton(searchText: String) {
         fetchBooks(searchText: searchText)
     }
     
     func fetchBooks(searchText: String){
-        self.view.showInFetchActivityIndicatorAndHideBookManageView()
+        
+        self.startFetchBooks()
         
         Task.detached {
             do {
@@ -82,16 +80,21 @@ final class BookManagementPresenter: BookManagementPresenterInput {
                 self.filteredInSearchWordBooks = self.model.filteringFromBooks(searchText: searchText, books: self.books)
                 
                 self.matchedBooks = self.filteredInSearchWordBooks
-                
-                self.view.hideInFetchActivityIndicatorAndShowBookManageView()
-                self.view.updateBooksFilteredSearchWord()
+                self.finishedFetchBooks()
                 
             }catch {
-                //TODO: この後ReloadDataとか，hideInFetchActivityIndicatorAndShowBookManageViewした方がいいかも
-                self.view.showErrorFetchBooks(errorMessage: error.localizedDescription)
-                //self.view.hideInFetchActivityIndicatorAndShowBookManageView()
+                self.view.showMessage(title: "error", message: error.localizedDescription)
+                self.finishedFetchBooks()
             }
         }
+    }
+    
+    func startFetchBooks(){
+        self.view.startFetchBooks()
+    }
+    
+    func finishedFetchBooks(){
+        self.view.finishedFetchBooks()
     }
     
     func borrowedBookSwitchIsOn() {
@@ -134,13 +137,12 @@ final class BookManagementPresenter: BookManagementPresenterInput {
                     let updateState = try await self.model.borrowBook(book: book, userName: self.user.name)
                     switch updateState {
                     case .success:
-                        self.view.changedStateSuccess(message: updateState.rawValue)
+                        self.view.showMessage(title: "success", message: updateState.rawValue)
                     case .nomatch:
-                        self.view.changedStateError(message: updateState.rawValue)
+                        self.view.showMessage(title: "error", message: updateState.rawValue)
                     }
-                    
                 }catch {
-                    self.view.changedStateError(message: error.localizedDescription)
+                    self.view.showMessage(title: "error", message: error.localizedDescription)
                 }
             }
         case .myselfReturn:
@@ -149,13 +151,13 @@ final class BookManagementPresenter: BookManagementPresenterInput {
                     let updateState = try await self.model.returnBook(book: book)
                     switch updateState {
                     case .success:
-                        self.view.changedStateSuccess(message: updateState.rawValue)
+                        self.view.showMessage(title: "success", message: updateState.rawValue)
                     case .nomatch:
-                        self.view.changedStateError(message: updateState.rawValue)
+                        self.view.showMessage(title: "error", message: updateState.rawValue)
                     }
                     
                 }catch {
-                    self.view.changedStateError(message: error.localizedDescription)
+                    self.view.showMessage(title: "error", message: error.localizedDescription)
                 }
             }
 
