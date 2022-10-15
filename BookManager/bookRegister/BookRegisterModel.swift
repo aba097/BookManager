@@ -69,7 +69,7 @@ final class BookRegisterModel: BookRegisterModelInput {
                     "state": book.state,
                     "imageUrl": book.imageUrl
                 ])
-                self.delegate?.postBookInfoResult(result: .success("登録完了"))
+                self.delegate?.postBookInfoResult(result: .success("Completion of registration"))
             } catch {
                 self.delegate?.postBookInfoResult(result: .failure(error))
             }

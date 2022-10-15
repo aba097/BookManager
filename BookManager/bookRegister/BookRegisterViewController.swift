@@ -125,7 +125,7 @@ extension BookRegisterViewController: UIImagePickerControllerDelegate, UINavigat
 
 //MARK: - Extension BookRegisterPresenterOutput -
 extension BookRegisterViewController: BookRegisterPresenterOutput {
-
+    
     func setDefaultValue() {
         self.inputTitleTextField.text = ""
         self.inputAuthorTextField.text = ""
@@ -135,31 +135,15 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
         self.bookRegisterButton.isEnabled = true
     }
     
-    func showSuccessPostBookInfo(message: String) {
-        let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(okAction)
-        DispatchQueue.main.sync {
-            self.bookRegisterButton.isEnabled = true
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func showErrorPostBookInfo(message: String) {
-        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(okAction)
-        DispatchQueue.main.sync {
-            self.bookRegisterButton.isEnabled = true
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func showErrorNotInputTitle(errorMessage: String) {
-        let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
+    func showMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func doEnbaleRegiterButton() {
+        self.bookRegisterButton.isEnabled = true
     }
     
     func showPhotoUploadAlert() {
@@ -199,12 +183,10 @@ extension BookRegisterViewController: BookRegisterPresenterOutput {
     func showErrorFetchBookInfo(errorMessage: String, fromScanISBNCode: Bool) {
         let alert = UIAlertController(title: "エラー", message: errorMessage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-            
             self.presenter.closedShowErrorFetchBookInfo(fromScanISBNCode: fromScanISBNCode)
         })
 
         alert.addAction(okAction)
-
         present(alert, animated: true, completion: nil)
         
     }

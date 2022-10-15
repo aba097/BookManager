@@ -21,9 +21,7 @@ protocol BookRegisterPresenterInput {
 }
 
 protocol BookRegisterPresenterOutput: AnyObject {
-    func showSuccessPostBookInfo(message: String)
-    func showErrorPostBookInfo(message: String)
-    func showErrorNotInputTitle(errorMessage: String)
+    func showMessage(title: String, message: String)
     func showPhotoUploadAlert()
     func setFetchBookInfo(title: String, author: String, publisher: String, image: Data?)
     func showErrorFetchBookInfo(errorMessage: String, fromScanISBNCode: Bool)
@@ -31,6 +29,7 @@ protocol BookRegisterPresenterOutput: AnyObject {
     func captureStop()
     func setDefaultValue()
     func setupBarcodeCapture(output: inout AVCaptureMetadataOutput, capturePreviewLayer: inout AVCaptureVideoPreviewLayer)
+    func doEnbaleRegiterButton()
 }
 
 final class BookRegisterPresenter: BookRegisterPresenterInput {
@@ -106,7 +105,8 @@ final class BookRegisterPresenter: BookRegisterPresenterInput {
     
     func pressedBookRegisterButton(inputTitle: String, inputAuthor: String, inputPublisher: String, inputImage: Data?) {
         if inputTitle == "" {
-            self.view.showErrorNotInputTitle(errorMessage: "Title is required")
+            self.view.showMessage(title: "error", message: "Title is required")
+            self.view.doEnbaleRegiterButton()
             return
         }
     
@@ -174,9 +174,15 @@ extension BookRegisterPresenter: BookRegisterModelDelegate {
     func postBookInfoResult(result: Result<String, Error>) {
         switch result {
         case .success(let successMessage):
-            self.view.showSuccessPostBookInfo(message: successMessage)
+            DispatchQueue.main.sync{
+                self.view.showMessage(title: "success", message: successMessage)
+                self.view.doEnbaleRegiterButton()
+            }
         case .failure(let error):
-            self.view.showErrorPostBookInfo(message: error.localizedDescription)
+            DispatchQueue.main.sync {
+                self.view.showMessage(title: "error", message: error.localizedDescription)
+                self.view.doEnbaleRegiterButton()
+            }
         }
 
     }
