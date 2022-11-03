@@ -5,7 +5,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>カメラロールにアクセスしますか？</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app use Camera</string>
+	<string>本の撮影やバーコードを読み取りするためにカメラを使用します</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

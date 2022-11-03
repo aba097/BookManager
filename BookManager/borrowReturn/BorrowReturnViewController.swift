@@ -117,6 +117,18 @@ extension BorrowReturnViewController: BorrowReturnPresenterOutput {
         self.readByISBNBarcodeView?.layer.addSublayer(capturePreviewLayer)
     }
     
-    
+    func guidedToSetting() {
+        let alert = UIAlertController(title: "カメラ使用のリクエスト", message:"バーコードを読み取るためカメラの使用を許可してください", preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "設定を開く", style: .default, handler: { (_) -> Void in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString ) else {
+                return
+            }
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        })
+        let closeAction: UIAlertAction = UIAlertAction(title: "閉じる", style: .cancel, handler: nil)
+        alert.addAction(settingsAction)
+        alert.addAction(closeAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

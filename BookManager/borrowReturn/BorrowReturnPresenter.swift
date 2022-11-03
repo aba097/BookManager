@@ -14,11 +14,11 @@ enum BorrowReturnState{
 }
 
 protocol BorrowReturnPresenterInput {
-    func viewWillAppear()
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool)
     func pressedBorrowButton()
     func pressedReturnButton()
     func viewDidLoad(viewBounds: CGRect)
+    func viewWillAppear()
     func viewDidDisappear()
     func scanISBNCode(avMetadataObjects: [AVMetadataObject])
 }
@@ -32,6 +32,7 @@ protocol BorrowReturnPresenterOutput: AnyObject {
     func stopActivityIndicator()
     func showMessage(title: String, message: String)
     func setupBarcodeCapture(output: inout AVCaptureMetadataOutput, capturePreviewLayer: inout AVCaptureVideoPreviewLayer)
+    func guidedToSetting()
 }
 
 final class BorrowReturnPresenter: BorrowReturnPresenterInput {
@@ -39,7 +40,7 @@ final class BorrowReturnPresenter: BorrowReturnPresenterInput {
     private(set) weak var view: BorrowReturnPresenterOutput!
     private(set) var model: BorrowReturnModelInput
     private(set) var user: User
-
+    
     private(set) var buttonState: BorrowReturnState?
     
     private(set) var isStateChange = false
@@ -59,6 +60,7 @@ final class BorrowReturnPresenter: BorrowReturnPresenterInput {
     }
     
     func viewWillAppear() {
+        self.checkAuthorizationState()
         self.buttonState = BorrowReturnState.borrowState
         self.view.stateSelectedBorrowButton()
         self.captureStart()
@@ -68,11 +70,21 @@ final class BorrowReturnPresenter: BorrowReturnPresenterInput {
         self.captureStop()
     }
     
+    func checkAuthorizationState() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .denied: // The user has previously denied access.
+            self.view.guidedToSetting()
+        default:
+            break
+        }
+    }
+    
     func setupBarcodeCapture(viewBounds: CGRect){
+    
         //画像や動画といった出力データの管理を行うクラス
         let session = AVCaptureSession()
         self.captureSessionQueue = DispatchQueue(label: "captureSessionQueue")
-        
+
         //カメラデバイスの管理を行うクラス
         let device : AVCaptureDevice = AVCaptureDevice.default(for: .video)!
         //AVCaptureDeviceをAVCaptureSessionに渡すためのクラス
@@ -115,6 +127,7 @@ final class BorrowReturnPresenter: BorrowReturnPresenterInput {
     func pressedCameraBootOrEndButton(buttonIsSelected: Bool) {
         //MARK: IsSelectedは初期値がfalseなので注意
         if !buttonIsSelected {
+            self.checkAuthorizationState()
             self.captureStart()
         }else {
             self.captureStop()
